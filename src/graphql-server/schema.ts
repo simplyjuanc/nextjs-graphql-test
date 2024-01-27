@@ -16,8 +16,8 @@ export const schema = makeSchema({
     Mutations
   ],
   outputs: {
-    schema: path.join(process.cwd(), "src", "graphql-server", "schema.graphql"),
-    typegen: path.join(process.cwd(), "src", "graphql-server", "types.ts"),
+    schema: path.join(process.cwd(), "src", "graphql-server", "generated", "schema.graphql"),
+    typegen: path.join(process.cwd(), "src", "graphql-server", "generated", "types.ts"),
   },
   contextType: {
     module: path.join(process.cwd(), "src", "graphql-server", "context.ts"),

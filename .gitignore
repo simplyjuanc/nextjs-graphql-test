@@ -35,8 +35,7 @@ npm-debug.log*
 *.db
 
 # graphql
-src/graphql-server/schema.graphql
-src/graphql-server/types.ts
+src/graphql-server/generated/*
 src/gql
 .vscode/settings.json
 
