@@ -1,3 +1,6 @@
+@value variables: "./variables.css";
+@value primary-color, text-color, text-color-light from variables;
+
 .container {
   padding: 0 2rem;
 }
@@ -29,7 +32,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: $primary-color;
   text-decoration: none;
 }
 
@@ -61,15 +64,8 @@
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family:
-    Menlo,
-    Monaco,
-    Lucida Console,
-    Liberation Mono,
-    DejaVu Sans Mono,
-    Bitstream Vera Sans Mono,
-    Courier New,
-    monospace;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
 .grid {
@@ -88,17 +84,15 @@
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition:
-    color 0.15s ease,
-    border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: $primary-color;
+  border-color: $primary-color;
 }
 
 .card h2 {
