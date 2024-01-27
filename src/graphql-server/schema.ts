@@ -1,9 +1,9 @@
-import { makeSchema, objectType, asNexusMethod } from "nexus";
+import { makeSchema, asNexusMethod } from "nexus";
 import { DateTimeResolver } from "graphql-scalars";
 import path from "path";
+import * as TypeDefs from './typeDefs';
 import * as Queries from './queries';
 import * as Mutations from './mutations';
-import * as TypeDefs from './TypeDefs';
 
 
 export const DateTime = asNexusMethod(DateTimeResolver, "date");

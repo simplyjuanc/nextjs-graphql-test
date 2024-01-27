@@ -1,5 +1,5 @@
 import { extendType, intArg, nonNull, stringArg } from "nexus";
-import { Context } from "./context";
+import { Context } from "../context";
 
 
 

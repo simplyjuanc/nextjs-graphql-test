@@ -1,6 +1,6 @@
 
 import { extendType, intArg, nonNull, objectType } from "nexus";
-import { Context } from "./context";
+import { Context } from "../context";
 
 
 export const getTasks = extendType({
