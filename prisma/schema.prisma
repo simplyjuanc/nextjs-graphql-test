@@ -12,9 +12,18 @@ datasource db {
 }
 
 model Task {
-    id          Int      @id @default(autoincrement())
+    id          Int       @id @default(autoincrement())
     title       String
     description String?
-    status      String
-    createdAt   DateTime @default(now())
+    status      Status    @relation(fields: [statusId], references: [id])
+    statusId    Int
+    createdAt   DateTime  @default(now())
+    dueDate     DateTime?
+}
+
+model Status {
+    id    Int    @id @default(autoincrement())
+    value String @unique // Initially: [TO_DO, IN_PROGRESS, DONE]
+    text  String
+    tasks Task[]
 }
