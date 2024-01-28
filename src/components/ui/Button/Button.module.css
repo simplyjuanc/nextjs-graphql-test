@@ -1,9 +1,6 @@
-@value variables: "../../../styles/variables.css";
-@value primary-color, text-color, text-color-light from variables;
-
 .btn {
-  background-color: primary-color;
-  color: text-color-light;
+  background-color: var(--accent-color);
+  color: var(--text-color-light);
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
