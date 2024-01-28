@@ -12,9 +12,9 @@ interface TaskFormProps {
 
 const TaskForm: React.FC<TaskFormProps> = (props) => {
   const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    props.onChange(event.target.name, event.target.value);
+    props.onChange(e.target.name, e.target.value);
   };
   return (
     <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
