@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/client';
 import Spinner from '../components/ui/Spinner';
 import { NexusGenFieldTypes } from '../graphql-server/generated/types';
 import Sidebar from '../components/common/Sidebar';
+import Header from '../components/common/Header';
+import Footer from '../components/common/Footer';
 
 export default function Home() {
   const { loading, error, data } =
@@ -21,20 +23,13 @@ export default function Home() {
         <meta name='description' content='Manage your tasks!' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <header>
-        <h1>Welcome to the Task Manager</h1>
-        <p>Username</p>
-        <p>Logout</p>
-      </header>
+      <Header />
       <main className={styles.main}>
         <Sidebar />
         <Dashboard statusOptions={statusOptions} />
       </main>
-      <footer>
-        <p>Credentials</p>
-        <p>Date</p>
-        <p>Authorship</p>
-      </footer>
+
+      <Footer />
     </div>
   );
 }

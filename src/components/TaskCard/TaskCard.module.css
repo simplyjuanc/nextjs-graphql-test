@@ -1,0 +1,10 @@
+@value variables: "../../styles/variables.css";
+@value primary-color, text-color, text-color-light from variables;
+
+.card {
+  border: solid black;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
