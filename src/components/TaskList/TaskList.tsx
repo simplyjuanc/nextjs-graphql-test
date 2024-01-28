@@ -42,6 +42,7 @@ const TaskList: React.FC<TaskListProps> = (props) => {
                 task={task}
                 index={index}
                 onClick={() => handleTaskClick(task)}
+                setTasks={props.setTasks}
               />
             ))}
             {provided.placeholder}

@@ -8,4 +8,5 @@
   margin-bottom: var(--spacing-medium);
   cursor: pointer;
   padding: var(--spacing-small);
+  position: relative;
 }
