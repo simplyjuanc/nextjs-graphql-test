@@ -26,7 +26,7 @@
   --spacing-xl: calc(var(--spacing-medium) * 2);
 
   /* Borders and Radius */
-  --border-radius: 0.25rem;
+  --border-radius: 0.5rem;
   --border-radius-small: calc(var(--border-radius) * 0.5);
   --border-radius-large: calc(var(--border-radius) * 2);
   --border-width: 1px;

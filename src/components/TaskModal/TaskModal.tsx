@@ -31,32 +31,31 @@ const TaskModal: React.FC<TaskModalProps> = (props) => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleEditTask = async () => {
+    const res = await editTask({
+      ...taskDetails,
+      status: taskDetails.status.id,
+    });
+    props.setTasks((prevTasks) => {
+      return prevTasks.map((task) => {
+        return task.id === res.updateTask.id ? res.updateTask : task;
+      });
+    });
+  };
+
+  const handleAddTask = async () => {
+    const res = await addTask({
+      title: taskDetails.title,
+      description: taskDetails.description,
+      status: 1,
+    });
+    props.setTasks((prevTasks) => [...prevTasks, res.createTask]);
+  };
+
+  const handleSubmit = async () => {
     if (!taskDetails || !taskDetails.title) return;
 
-    if (props.task) {
-      editTask({
-        ...taskDetails,
-        status: taskDetails.status.id,
-      }).then((res) => {
-        props.setTasks((prevTasks) => {
-          const updatedTasks = prevTasks.map((task) => {
-            return task.id === res.updateTask.id ? res.updateTask : task;
-          });
-
-          return updatedTasks;
-        });
-      });
-    } else {
-      addTask({
-        title: taskDetails.title,
-        description: taskDetails.description,
-        status: 1,
-      }).then((res) => {
-        props.setTasks((prevTasks) => [...prevTasks, res.createTask]);
-      });
-    }
-
+    props.task ? await handleEditTask() : await handleAddTask();
     closeModal();
   };
 

@@ -4,8 +4,10 @@
   box-shadow: var(--box-shadow-thin);
   background-color: var(--primary-bg-color);
   width: 20vw;
+  min-height: 3rem;
   text-align: left;
   margin-bottom: var(--spacing-medium);
   cursor: pointer;
   padding: var(--spacing-small);
+  position: relative;
 }

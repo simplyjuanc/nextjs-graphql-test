@@ -13,6 +13,7 @@ export const GET_TASKS = gql`
       id
       title
       description
+      createdAt
       status {
         id
         value
