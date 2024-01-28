@@ -63,7 +63,12 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     <Spinner />
   ) : (
     <div className={styles.container}>
-      <Button icon={MdOutlineAdd} text={'Add Task'} onClick={handleAddTask} />
+      <Button
+        icon={MdOutlineAdd}
+        text={'Add Task'}
+        onClick={handleAddTask}
+        size='large'
+      />
       <section className={styles.canvas}>
         <h2>Kanban Board</h2>
         <div className={styles.board}>

@@ -1,18 +1,10 @@
 .btn {
-  background-color: var(--accent-color);
-  color: var(--secondary-text-color);
-  padding: 1rem;
   border: none;
-  border-radius: 0.5rem;
-  font-weight: var(--font-weight-bold);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-medium);
   flex-shrink: 0;
   cursor: pointer;
-  width: clamp(5rem, 15vw, 10rem);
-  height: clamp(1rem, 5vh, 3rem);
 }
 
 .btn:hover {
@@ -23,6 +15,77 @@
 }
 
 .btnIcon {
-  stroke-width: 1;
-  border: none;
+  transform: scale(1.2);
+}
+
+.__small {
+  padding: var(--spacing-small);
+  font-size: var(--font-size-small);
+  border-radius: var(--border-radius-small);
+  gap: var(--spacing-small);
+}
+
+.__medium {
+  padding: var(--spacing-medium);
+  font-size: var(--font-size-regular);
+  border-radius: var(--border-radius);
+  gap: var(--spacing-medium);
+}
+
+.__large {
+  padding: var(--spacing-medium);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius);
+  gap: var(--spacing-large);
+  width: clamp(5rem, 15vw, 12rem);
+  height: clamp(1rem, 6vh, 6rem);
+}
+
+/* Colour variations */
+.__default {
+  background-color: var(--accent-color);
+  color: var(--secondary-text-color);
+}
+
+.__secondary {
+  background-color: var(--secondary-bg-color);
+  color: var(--secondary-text-color);
+}
+
+.__warning {
+  background-color: var(--accent-color);
+  color: var(--primary-text-color);
+}
+
+.__danger {
+  background-color: var(--error-color);
+  color: var(--secondary-text-color);
+}
+
+.__success {
+  background-color: var(--secondary-bg-color-darker);
+  color: var(--primary-text-color);
+}
+
+/* Position variations */
+.__absolute {
+  position: absolute;
+}
+
+.__relative {
+  position: relative;
+}
+
+/* Justification variations */
+.__left {
+  justify-content: flex-start;
+}
+
+.__right {
+  right: 3%;
+}
+
+.__center {
+  justify-content: center;
 }
