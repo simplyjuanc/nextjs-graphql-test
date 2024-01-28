@@ -3,12 +3,13 @@ import { NexusGenObjects } from '../../graphql-server/generated/types';
 import { Draggable } from '@hello-pangea/dnd';
 import styles from './TaskCard.module.css';
 
-interface TaskProps {
+interface TaskCardProps {
   index: number;
   task: NexusGenObjects['Task'];
+  onClick?: <T>(arg: T) => void;
 }
 
-const TaskCard: React.FC<TaskProps> = (props) => {
+const TaskCard: React.FC<TaskCardProps> = (props) => {
   return (
     <Draggable draggableId={props.task.id.toString()} index={props.index}>
       {(provided) => (
@@ -17,6 +18,7 @@ const TaskCard: React.FC<TaskProps> = (props) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
+          onClick={props.onClick}
         >
           <h4>{props.task.title}</h4>
           {props.task.description && <p>{props.task.description}</p>}

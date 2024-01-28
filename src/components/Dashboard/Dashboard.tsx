@@ -29,11 +29,16 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     if (data) setTasks(data.Task);
   }, [data]);
 
-  const onDragStart = (result: DragStart) => {};
-
   const onDragEnd = (result: DropResult) => {
-    const { draggableId, destination } = result;
+    const { draggableId, destination, source } = result;
+    console.log({ di: destination.index, si: source.index });
     if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
 
     const updatedTasks = tasks.map((task) => {
       if (task.id.toString() !== draggableId) return task;
@@ -62,12 +67,13 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
       <section className={styles.canvas}>
         <h2>Kanban Board</h2>
         <div className={styles.board}>
-          <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+          <DragDropContext onDragEnd={onDragEnd}>
             {props.statusOptions.map((status) => (
               <TaskList
                 key={status.id}
                 status={status}
                 tasks={filterTasksByStatus(tasks, status)}
+                setTasks={setTasks}
               />
             ))}
           </DragDropContext>

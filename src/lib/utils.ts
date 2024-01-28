@@ -5,7 +5,6 @@ export function filterTasksByStatus(
   tasks: NexusGenObjects['Task'][],
   status: NexusGenObjects['Status']
 ) {
-  console.log({ status, tasks })
   return tasks.filter((task) => task.status.value === status.value);
 }
 
