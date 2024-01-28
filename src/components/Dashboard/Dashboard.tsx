@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { MdOutlineAdd } from 'react-icons/md';
 import { useQuery } from '@apollo/client';
+import { DragDropContext, DragStart, DropResult } from '@hello-pangea/dnd';
+import { MdOutlineAdd } from 'react-icons/md';
 import Button from '../ui/Button/Button';
 import TaskList from '../TaskList/TaskList';
-import Spinner from '../ui/Spinner';
-import { DragDropContext, DragStart, DropResult } from '@hello-pangea/dnd';
+import Spinner from '../ui/Spinner/Spinner';
 import { GET_TASKS } from '../../lib/queries';
 import styles from './Dashboard.module.css';
+import { useUpdateTask } from '../../lib/mutations';
+import { filterTasksByStatus } from '../../lib/utils';
+import TaskModal from '../TaskModal/TaskModal';
 import {
   NexusGenFieldTypes,
   NexusGenObjects,
 } from '../../graphql-server/generated/types';
-import { useUpdateTask } from '../../lib/mutations';
 
 interface DashboardProps {
   statusOptions: NexusGenObjects['Status'][];
@@ -20,7 +22,8 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = (props) => {
   const { loading, data } = useQuery<NexusGenFieldTypes['Query']>(GET_TASKS);
   const [tasks, setTasks] = useState<NexusGenObjects['Task'][]>([]);
-  const { updateTask } = useUpdateTask();
+  const [isModalActive, setIsModalActive] = useState(false);
+  const { taskAction: updateTask } = useUpdateTask();
 
   useEffect(() => {
     if (data) setTasks(data.Task);
@@ -49,15 +52,13 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     setTasks(updatedTasks);
   };
 
+  const handleAddTask = () => setIsModalActive((prev) => !prev);
+
   return loading ? (
     <Spinner />
   ) : (
     <div className={styles.container}>
-      <Button
-        icon={MdOutlineAdd}
-        text={'Add Task'}
-        onClick={() => console.log('click')}
-      />
+      <Button icon={MdOutlineAdd} text={'Add Task'} onClick={handleAddTask} />
       <section className={styles.canvas}>
         <h2>Kanban Board</h2>
         <div className={styles.board}>
@@ -72,15 +73,11 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
           </DragDropContext>
         </div>
       </section>
+      {isModalActive && (
+        <TaskModal setIsModalActive={setIsModalActive} setTasks={setTasks} />
+      )}
     </div>
   );
 };
 
 export default Dashboard;
-
-function filterTasksByStatus(
-  tasks: NexusGenObjects['Task'][],
-  status: NexusGenObjects['Status']
-) {
-  return tasks.filter((task) => task.status.value === status.value);
-}

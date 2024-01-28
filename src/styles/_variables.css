@@ -1,45 +1,11 @@
-/* Color Scheme
-@value primary-bg-color: #FFFFFF;
-@value secondary-bg-color: #E6ECF0;
-@value secondary-bg-color-darker: #D5D5D5;
-@value primary-text-color: #333333;
-@value secondary-text-color: #888888;
-@value accent-color: #0070F3;
-@value border-color: #E1E1E1;
-@value error-color: #FF5B5B;
-
-/* Typography
-@value font-family: 'Roboto', sans-serif;
-@value font-size-regular: 16px;
-@value font-size-small: 14px;
-@value font-size-xs: 10px;
-@value font-size-large: 20px;
-@value font-weight-regular: 400;
-@value font-weight-bold: 700;
-
-/* Spacing
-@value spacing-medium: 1rem;
-@value spacing-small: calc(spacing-medium / 2);
-@value spacing-large: calc(spacing-medium * 1.5);
-
-/* Borders and Radius
-@value border-radius: 0.25rem;
-@value border-width: 1px;
-
-/* Shadows
-@value box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-
-/* Other
-@value transition-speed: 0.3s; 
-*/
-
 :root {
   /* Color Scheme */
   --primary-bg-color: #ffffff;
+  --primary-bg-color-transparent: #ffffff88;
   --secondary-bg-color: #e6ecf0;
   --secondary-bg-color-darker: #d5d5d5;
   --primary-text-color: #333333;
-  --secondary-text-color: #888888;
+  --secondary-text-color: #ffffff;
   --accent-color: #0070f3;
   --border-color: #e1e1e1;
   --error-color: #ff5b5b;
@@ -55,15 +21,19 @@
 
   /* Spacing */
   --spacing-medium: 1rem;
-  --spacing-small: 0.5rem; /* Calculated from spacing-medium */
-  --spacing-large: 1.5rem; /* Calculated from spacing-medium */
+  --spacing-small: calc(var(--spacing-medium) * 0.5);
+  --spacing-large: calc(var(--spacing-medium) * 1.5);
+  --spacing-xl: calc(var(--spacing-medium) * 2);
 
   /* Borders and Radius */
   --border-radius: 0.25rem;
+  --border-radius-small: calc(var(--border-radius) * 0.5);
+  --border-radius-large: calc(var(--border-radius) * 2);
   --border-width: 1px;
 
   /* Shadows */
-  --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --box-shadow-thin: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --box-shadow: 4px 8px 9px rgba(0, 0, 0, 0.1);
 
   /* Other */
   --transition-speed: 0.3s;
