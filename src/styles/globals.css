@@ -1,3 +1,5 @@
+@import './_variables.css';
+
 /* 
 CSS Reset from Josh Comeau:
 https://www.joshwcomeau.com/css/custom-css-reset
@@ -6,6 +8,7 @@ https://www.joshwcomeau.com/css/custom-css-reset
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 * {
