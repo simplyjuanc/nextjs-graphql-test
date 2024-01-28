@@ -12,7 +12,10 @@ interface TaskListProps {
 const TaskList: React.FC<TaskListProps> = (props) => {
   return (
     <div className={styles.column}>
-      <h3>{props.status.text}</h3>
+      <div className={styles.taskList__header}>
+        <h3>{props.status.text}</h3>
+        <p className={styles.taskList__counter}>{props.tasks.length}</p>
+      </div>
       <Droppable droppableId={props.status.id.toString()}>
         {(provided) => (
           <div

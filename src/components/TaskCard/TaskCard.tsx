@@ -18,8 +18,11 @@ const TaskCard: React.FC<TaskProps> = (props) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <p>{props.task.title}</p>
+          <h4>{props.task.title}</h4>
           {props.task.description && <p>{props.task.description}</p>}
+          {props.task.createdAt && (
+            <p>Created at: {new Date(props.task.createdAt).toLocaleString()}</p>
+          )}
         </article>
       )}
     </Draggable>
