@@ -16,7 +16,6 @@ const TaskForm: React.FC<TaskFormProps> = (props) => {
   ) => {
     props.onChange(event.target.name, event.target.value);
   };
-  console.log({ task: props.task });
   return (
     <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
       <div className={styles.form__item}>

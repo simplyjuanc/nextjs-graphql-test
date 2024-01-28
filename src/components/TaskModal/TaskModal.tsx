@@ -14,7 +14,6 @@ const TaskModal: React.FC<TaskModalProps> = (props) => {
   const { taskAction: addTask } = useCreateTask();
   const { taskAction: editTask } = useUpdateTask();
   const [taskDetails, setTaskDetails] = useState(props.task);
-  console.log({ taskDetails });
   const closeModal = useCallback(() => props.setIsModalActive(false), [props]);
 
   useEffect(() => {
@@ -33,10 +32,35 @@ const TaskModal: React.FC<TaskModalProps> = (props) => {
   };
 
   const handleSubmit = () => {
+    if (!taskDetails || !taskDetails.title) return;
+
+    if (props.task) {
+      editTask({
+        ...taskDetails,
+        status: taskDetails.status.id,
+      }).then((res) => {
+        props.setTasks((prevTasks) => {
+          const updatedTasks = prevTasks.map((task) => {
+            return task.id === res.updateTask.id ? res.updateTask : task;
+          });
+
+          return updatedTasks;
+        });
+      });
+    } else {
+      addTask({
+        title: taskDetails.title,
+        description: taskDetails.description,
+        status: 1,
+      }).then((res) => {
+        props.setTasks((prevTasks) => [...prevTasks, res.createTask]);
+      });
+    }
+
     closeModal();
   };
 
-  const actionName = taskDetails ? 'Edit task' : 'Add task';
+  const actionName = props.task ? 'Edit task' : 'Add task';
   return (
     <Modal onClose={closeModal} title={actionName}>
       <TaskForm

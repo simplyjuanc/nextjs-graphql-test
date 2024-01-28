@@ -1,11 +1,11 @@
 import { gql } from "@apollo/client"
-import { NexusGenArgTypes } from "../graphql-server/generated/types"
+import { NexusGenArgTypes, NexusGenObjects } from "../graphql-server/generated/types"
 import { useCustomMutation } from "./utils"
 
 
 
 const CREATE_TASK = gql`
-  mutation CreateTask($title: String!, $description: String, $status: Int!) {
+  mutation createTask($title: String!, $description: String, $status: Int!) {
     createTask(title: $title, description: $description, status: $status) {
       id
       description
@@ -13,6 +13,8 @@ const CREATE_TASK = gql`
       title
       status {
         id
+        text
+        value
       }
     }
   }`
@@ -35,14 +37,25 @@ const DELETE_TASK = gql`
   mutation DeleteTask($id: Int!) {
     deleteTask(id: $id) {
       id
-      title
-      description
-      createdAt
     }
   }`
 
 
 
-export const useCreateTask = () => useCustomMutation<NexusGenArgTypes['Mutation']['createTask']>(CREATE_TASK);
-export const useUpdateTask = () => useCustomMutation<NexusGenArgTypes['Mutation']['updateTask']>(UPDATE_TASK);
-export const useDeleteTask = () => useCustomMutation<NexusGenArgTypes['Mutation']['deleteTask']>(DELETE_TASK);
+export const useCreateTask = () => useCustomMutation<
+  NexusGenArgTypes['Mutation']['createTask'],
+  'createTask',
+  NexusGenObjects['Task']
+>(CREATE_TASK);
+
+export const useUpdateTask = () => useCustomMutation<
+  NexusGenArgTypes['Mutation']['updateTask'],
+  'updateTask',
+  NexusGenObjects['Task']
+>(UPDATE_TASK);
+
+export const useDeleteTask = () => useCustomMutation<
+  NexusGenArgTypes['Mutation']['deleteTask'],
+  'deleteTask',
+  NexusGenObjects['Task']
+>(DELETE_TASK);
