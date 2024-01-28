@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css';
 import Dashboard from '../components/Dashboard/Dashboard';
 import { GET_STATUSES } from '../lib/queries';
 import { useQuery } from '@apollo/client';
-import Spinner from '../components/ui/Spinner';
+import Spinner from '../components/ui/Spinner/Spinner';
 import { NexusGenFieldTypes } from '../graphql-server/generated/types';
 import Sidebar from '../components/common/Sidebar';
 import Header from '../components/common/Header';

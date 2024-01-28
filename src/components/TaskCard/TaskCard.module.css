@@ -1,7 +1,7 @@
 .card {
   border: solid var(--border-color) var(--border-width);
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-thin);
   background-color: var(--primary-bg-color);
   width: 20vw;
   text-align: left;
