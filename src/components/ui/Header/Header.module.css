@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--heading-color);
+  color: var(--secondary-text-color);
+  min-height: 10vh;
+  padding: 0 var(--spacing-xl);
+}
+
+.logout {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--spacing-medium);
+  align-items: center;
+}
+
+.title {
+  background-color: var(--accent-color);
+  padding: var(--spacing-small) var(--spacing-xl);
+}
+
+.title > h2 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--heading-color);
+}
