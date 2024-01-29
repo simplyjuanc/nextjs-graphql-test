@@ -1,0 +1,84 @@
+.panel {
+  position: fixed;
+  right: 0;
+  height: 100vh;
+  width: clamp(20rem, 40vw, 60vw);
+  background-color: var(--secondary-bg-color);
+  border-radius: var(--border-radius-large) 0 0 var(--border-radius-large);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-xl) var(--spacing-large);
+}
+
+.panelArticle {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-large);
+  gap: var(--spacing-small);
+}
+
+.description {
+  min-height: 15%;
+}
+
+.dateContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
+
+.dateItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--spacing);
+}
+
+.date {
+  background-color: var(--secondary-bg-color-lighter);
+  border: none;
+  border-radius: var(--border-radius-small);
+  box-shadow: var(--box-shadow-small);
+  text-align: right;
+  cursor: pointer;
+  max-width: 40%;
+}
+
+.title {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+  border: none;
+  background-color: var(--secondary-bg-color);
+  cursor: text;
+}
+
+.title:hover,
+.title:focus {
+  background-color: var(--secondary-bg-color-lighter);
+  border-radius: var(--border-radius);
+}
+
+.title::placeholder {
+  color: var(--heading-color);
+  opacity: 1;
+}
+
+.description {
+  font-size: var(--font-size-regular);
+  font-weight: var(--font-weight-regular);
+  border: none;
+  background-color: var(--secondary-bg-color);
+  cursor: text;
+}
+
+.description :hover,
+.description :focus {
+  background-color: var(--secondary-bg-color-lighter);
+  border-radius: var(--border-radius);
+}
