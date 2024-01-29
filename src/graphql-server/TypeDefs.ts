@@ -12,7 +12,10 @@ export const TaskType = objectType({
     t.nonNull.field(Task.title);
     t.field(Task.description);
     t.nonNull.field(Task.createdAt);
+    t.field(Task.dueDate);
     t.nonNull.field('status', { type: StatusType });
+    t.nonNull.list.field('childTasks', { type: TaskType });
+    t.field('parentTask', { type: TaskType });
   },
 });
 

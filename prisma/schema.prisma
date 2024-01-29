@@ -12,13 +12,16 @@ datasource db {
 }
 
 model Task {
-    id          Int       @id @default(autoincrement())
-    title       String
-    description String?
-    status      Status    @relation(fields: [statusId], references: [id])
-    statusId    Int
-    createdAt   DateTime  @default(now())
-    dueDate     DateTime?
+    id           Int       @id @default(autoincrement())
+    title        String
+    description  String?
+    status       Status    @relation(fields: [statusId], references: [id])
+    statusId     Int
+    createdAt    DateTime  @default(now())
+    dueDate      DateTime?
+    childTasks   Task[]    @relation("ChildTasks")
+    parentTask   Task?     @relation("ChildTasks", fields: [parentTaskId], references: [id])
+    parentTaskId Int?
 }
 
 model Status {
