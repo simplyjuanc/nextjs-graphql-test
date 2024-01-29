@@ -72,3 +72,26 @@ export const deleteTask = extendType({
     });
   },
 });
+
+
+export const connectSubTask = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.field("connectSubTask", {
+      type: "Task",
+      args: {
+        id: nonNull(intArg()),
+        subTaskId: nonNull(intArg()),
+      },
+      resolve: (_, args, ctx: Context) => {
+        return ctx.prisma.task.update({
+          where: { id: args.id },
+          data: {
+            childTasks: { connect: { id: args.subTaskId } }
+          },
+          include: { status: true },
+        })
+      }
+    })
+  }
+});

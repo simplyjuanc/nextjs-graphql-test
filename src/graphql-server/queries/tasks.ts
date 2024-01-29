@@ -53,3 +53,26 @@ export const getTaskByStatus = extendType({
     });
   }
 });
+
+
+export const getSubTasks = extendType({
+  type: "Query",
+  definition(t) {
+    t.list.field("getSubTasks", {
+      type: "Task",
+      args: {
+        id: nonNull(intArg()),
+      },
+      resolve: (_parent, args, ctx: Context) => {
+        return ctx.prisma.task.findMany({
+          where: { id: args.id },
+          include: {
+            // childTasks: true,
+            status: true,
+          },
+        });
+      },
+    });
+  }
+});
+
