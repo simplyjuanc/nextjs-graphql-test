@@ -14,10 +14,18 @@ export const TaskType = objectType({
     t.nonNull.field(Task.createdAt);
     t.field(Task.dueDate);
     t.nonNull.field('status', { type: StatusType });
-    t.nonNull.list.field('childTasks', { type: TaskType });
     t.field('parentTask', { type: TaskType });
-  },
-});
+    t.list.field('childrenTasks', {
+      type: TaskType,
+      resolve: (parent, _, ctx) => {
+        return ctx.prisma.task.findMany({
+          where: { parentTaskId: parent.id },
+          include: { status: true }
+        });
+      }
+    })
+  }
+})
 
 export const StatusType = objectType({
   name: Status.$name,
