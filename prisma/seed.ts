@@ -44,7 +44,7 @@ const taskData: Prisma.TaskCreateInput[] = [
     createdAt: new Date(),
     status: { connect: { value: 'TO_DO' } },
     dueDate: new Date(),
-    childTasks: {
+    childrenTasks: {
       create: [
         {
           title: "Sub-task 1",

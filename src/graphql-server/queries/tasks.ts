@@ -67,7 +67,7 @@ export const getSubTasks = extendType({
         return ctx.prisma.task.findMany({
           where: { id: args.id },
           include: {
-            // childTasks: true,
+            childrenTasks: true,
             status: true,
           },
         });

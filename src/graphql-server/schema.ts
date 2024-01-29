@@ -1,7 +1,7 @@
 import { makeSchema, asNexusMethod } from "nexus";
 import { DateTimeResolver } from "graphql-scalars";
 import path from "path";
-import * as TypeDefs from './typeDefs';
+import * as TypeDefs from './TypeDefs';
 import * as Queries from './queries';
 import * as Mutations from './mutations';
 
