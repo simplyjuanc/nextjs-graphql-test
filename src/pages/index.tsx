@@ -6,8 +6,8 @@ import { useQuery } from '@apollo/client';
 import Spinner from '../components/ui/Spinner/Spinner';
 import { NexusGenFieldTypes } from '../graphql-server/generated/types';
 import Sidebar from '../components/common/Sidebar';
-import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
+import Header from '../components/ui/Header/Header';
+import Footer from '../components/ui/Footer/Footer';
 
 export default function Home() {
   const { loading, error, data } =
@@ -25,7 +25,6 @@ export default function Home() {
       </Head>
       <Header />
       <main className={styles.main}>
-        <Sidebar />
         <Dashboard statusOptions={statusOptions} />
       </main>
 

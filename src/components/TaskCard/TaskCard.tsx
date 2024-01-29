@@ -38,12 +38,13 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
             color='danger'
           />
           <div onClick={props.onClick}>
-            <h4>{props.task.title}</h4>
-            {props.task.description && <p>{props.task.description}</p>}
-            {props.task.createdAt && (
-              <p>
-                Created on:{' '}
-                {new Date(props.task.createdAt).toLocaleDateString()}
+            <h4 className={styles.title}>{props.task.title}</h4>
+            {/* {props.task.description && (
+              <p className={styles.description}>{props.task.description}</p>
+            )} */}
+            {props.task.dueDate && (
+              <p className={styles.date}>
+                Due: {new Date(props.task.createdAt).toLocaleDateString()}
               </p>
             )}
           </div>

@@ -2,22 +2,24 @@
   /* Color Scheme */
   --primary-bg-color: #ffffff;
   --primary-bg-color-transparent: #ffffff88;
-  --secondary-bg-color: hsl(204, 25%, 92%);
-  --secondary-bg-color-darker: hsl(204, 25%, 80%);
-  --secondary-bg-color-lighter: hsl(204, 25%, 95%);
+  --secondary-bg-color: #e6ecf0;
+  --secondary-bg-color-darker: #bfcfd9;
+  --secondary-bg-color-lighter: #eff3f5;
   --primary-text-color: #333333;
-  --heading-color: #000000;
+  --ribbon-color: #222222;
+  --heading-color: #001c38;
   --secondary-text-color: #ffffff;
-  --accent-color: #0070f3;
+  --accent-color: #027dfa;
   --border-color: #e1e1e1;
   --error-color: #ff5b5b;
 
   /* Typography */
-  --font-family: 'Roboto', sans-serif;
   --font-size-regular: 16px;
   --font-size-small: 14px;
   --font-size-xs: 10px;
   --font-size-large: 20px;
+  --font-size-xl: 24px;
+  --font-wight-light: 200;
   --font-weight-regular: 400;
   --font-weight-bold: 700;
 

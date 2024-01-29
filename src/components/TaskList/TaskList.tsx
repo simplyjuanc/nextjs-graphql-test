@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React from 'react';
 import { NexusGenObjects } from '../../graphql-server/generated/types';
 import { Droppable } from '@hello-pangea/dnd';
 import styles from './TaskList.module.css';
@@ -31,11 +31,11 @@ const TaskList: React.FC<TaskListProps> = (props) => {
             className={styles.taskList}
             {...provided.droppableProps}
           >
-            {props.tasks?.map((task, index) => (
+            {props.tasks?.map((task, idx) => (
               <TaskCard
                 key={task.id}
                 task={task}
-                index={index}
+                index={idx}
                 onClick={() => handleTaskClick(task)}
                 setTasks={props.setTasks}
               />

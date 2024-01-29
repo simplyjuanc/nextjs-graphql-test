@@ -13,7 +13,7 @@ export const TaskDescription: React.FC<TaskArticleProps> = (props) => {
         className={styles.description}
         wrap='hard'
         rows={5}
-        cols={50}
+        cols={60}
       />
     </article>
   );

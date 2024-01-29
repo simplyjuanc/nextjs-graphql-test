@@ -19,3 +19,7 @@
   justify-content: center;
   gap: var(--spacing-large);
 }
+
+.linkInverse {
+  color: var(--secondary-text-color);
+}

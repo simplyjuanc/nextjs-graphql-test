@@ -5,10 +5,12 @@
   align-items: center;
   flex-shrink: 0;
   cursor: pointer;
+  transition: all 0.5s;
 }
 
 .btn:hover {
-  filter: brightness(90%);
+  background-color: transparent;
+  color: var(--primary-text-color);
 }
 .btn:active {
   filter: brightness(120%);
@@ -45,27 +47,21 @@
 /* Colour variations */
 .__default {
   background-color: var(--accent-color);
+  border: solid 1px var(--accent-color);
   color: var(--secondary-text-color);
 }
 
-.__secondary {
-  background-color: var(--secondary-bg-color);
-  color: var(--secondary-text-color);
-}
-
-.__warning {
-  background-color: var(--accent-color);
-  color: var(--primary-text-color);
+.__default:hover {
+  color: var(--accent-color);
 }
 
 .__danger {
   background-color: var(--error-color);
+  border: solid 1px var(--error-color);
   color: var(--secondary-text-color);
 }
-
-.__success {
-  background-color: var(--secondary-bg-color-darker);
-  color: var(--primary-text-color);
+.__danger:hover {
+  color: var(--error-color);
 }
 
 /* Position variations */

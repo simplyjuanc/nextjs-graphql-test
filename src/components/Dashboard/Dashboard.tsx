@@ -72,7 +72,6 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
         size='large'
       />
       <section className={styles.canvas}>
-        <h2>Kanban Board</h2>
         <div className={styles.board}>
           <DragDropContext onDragEnd={onDragEnd}>
             {props.statusOptions.map((status) => (

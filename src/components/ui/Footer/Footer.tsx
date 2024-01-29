@@ -7,7 +7,11 @@ const Footer = () => {
     <footer className={styles.footer}>
       <p>
         Tech Assessment for{' '}
-        <Link href={'https://www.portf.io/'} target='blank'>
+        <Link
+          className={styles.linkInverse}
+          href={'https://www.portf.io/'}
+          target='blank'
+        >
           PortF.io
         </Link>
       </p>
