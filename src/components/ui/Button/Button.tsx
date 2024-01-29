@@ -2,7 +2,7 @@ import React from 'react';
 import { IconType } from 'react-icons';
 import styles from './Button.module.css';
 
-interface ButtonProps {
+export interface ButtonProps {
   icon?: IconType;
   text?: string;
   onClick: () => void;

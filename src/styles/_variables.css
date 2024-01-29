@@ -22,8 +22,8 @@
   /* Spacing */
   --spacing-medium: 1rem;
   --spacing-small: calc(var(--spacing-medium) * 0.5);
-  --spacing-large: calc(var(--spacing-medium) * 1.5);
-  --spacing-xl: calc(var(--spacing-medium) * 2);
+  --spacing-large: calc(var(--spacing-medium) * 2);
+  --spacing-xl: calc(var(--spacing-medium) * 3);
 
   /* Borders and Radius */
   --border-radius: 0.5rem;
@@ -32,8 +32,12 @@
   --border-width: 1px;
 
   /* Shadows */
-  --box-shadow-thin: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  --box-shadow: 4px 8px 9px rgba(0, 0, 0, 0.1);
+  --box-shadow: -5px -5px 10px 5px rgba(0, 0, 0, 0.1),
+    5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+  --box-shadow-small: 0px 4px 8px rgba(0, 0, 0, 0.1),
+    0px 4px 8px rgba(0, 0, 0, 0.1);
+  /* --box-shadow: 4px 8px 9px rgba(0, 0, 0, 0.1); */
+  --box-shadow-large: 4px 8px 9px rgba(0, 0, 0, 0.1);
 
   /* Other */
   --transition-speed: 0.3s;
