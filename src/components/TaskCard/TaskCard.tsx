@@ -42,7 +42,8 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
             {props.task.description && <p>{props.task.description}</p>}
             {props.task.createdAt && (
               <p>
-                Created at: {new Date(props.task.createdAt).toLocaleString()}
+                Created on:{' '}
+                {new Date(props.task.createdAt).toLocaleDateString()}
               </p>
             )}
           </div>

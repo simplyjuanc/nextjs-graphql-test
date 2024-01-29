@@ -2,9 +2,11 @@
   /* Color Scheme */
   --primary-bg-color: #ffffff;
   --primary-bg-color-transparent: #ffffff88;
-  --secondary-bg-color: #e6ecf0;
-  --secondary-bg-color-darker: #d5d5d5;
+  --secondary-bg-color: hsl(204, 25%, 92%);
+  --secondary-bg-color-darker: hsl(204, 25%, 80%);
+  --secondary-bg-color-lighter: hsl(204, 25%, 95%);
   --primary-text-color: #333333;
+  --heading-color: #000000;
   --secondary-text-color: #ffffff;
   --accent-color: #0070f3;
   --border-color: #e1e1e1;

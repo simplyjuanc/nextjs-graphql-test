@@ -61,7 +61,7 @@ const TaskModal: React.FC<TaskModalProps> = (props) => {
 
   const actionName = props.task ? 'Edit task' : 'Add task';
   return (
-    <Modal onClose={closeModal} title={actionName}>
+    <Modal setIsModalActive={props.setIsModalActive} title={actionName}>
       <TaskForm
         task={taskDetails}
         onChange={handleChange}

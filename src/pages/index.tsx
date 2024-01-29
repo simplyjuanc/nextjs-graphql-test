@@ -12,7 +12,7 @@ import Footer from '../components/common/Footer';
 export default function Home() {
   const { loading, error, data } =
     useQuery<NexusGenFieldTypes['Query']>(GET_STATUSES);
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner dimensions={200} alt={'Logo spinner'} />;
   if (error) return <p>Error :{error.message}(</p>;
 
   const statusOptions = data.Status;

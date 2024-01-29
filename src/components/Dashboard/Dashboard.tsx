@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { DragDropContext, DragStart, DropResult } from '@hello-pangea/dnd';
+import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { MdOutlineAdd } from 'react-icons/md';
 import Button from '../ui/Button/Button';
 import TaskList from '../TaskList/TaskList';
@@ -9,11 +9,11 @@ import { GET_TASKS } from '../../lib/queries';
 import styles from './Dashboard.module.css';
 import { useUpdateTask } from '../../lib/mutations';
 import { filterTasksByStatus } from '../../lib/utils';
-import TaskModal from '../TaskModal/TaskModal';
 import {
   NexusGenFieldTypes,
   NexusGenObjects,
 } from '../../graphql-server/generated/types';
+import TaskPanel from '../TaskPanel/TaskPanel';
 
 interface DashboardProps {
   statusOptions: NexusGenObjects['Status'][];
@@ -22,7 +22,9 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = (props) => {
   const { loading, data } = useQuery<NexusGenFieldTypes['Query']>(GET_TASKS);
   const [tasks, setTasks] = useState<NexusGenObjects['Task'][]>([]);
-  const [isModalActive, setIsModalActive] = useState(false);
+  const [activeTask, setActiveTask] = useState<
+    [boolean, NexusGenObjects['Task'] | undefined]
+  >([false, undefined]);
   const { taskAction: updateTask } = useUpdateTask();
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
 
   const onDragEnd = (result: DropResult) => {
     const { draggableId, destination, source } = result;
-    console.log({ di: destination.index, si: source.index });
+    // console.log({ di: destination.index, si: source.index });
     if (!destination) return;
     if (
       destination.droppableId === source.droppableId &&
@@ -57,10 +59,10 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     setTasks(updatedTasks);
   };
 
-  const handleAddTask = () => setIsModalActive((prev) => !prev);
+  const handleAddTask = () => setActiveTask((prev) => [true, undefined]);
 
   return loading ? (
-    <Spinner />
+    <Spinner dimensions={200} alt={'Logo spinner'} />
   ) : (
     <div className={styles.container}>
       <Button
@@ -79,13 +81,18 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
                 status={status}
                 tasks={filterTasksByStatus(tasks, status)}
                 setTasks={setTasks}
+                setActiveTask={setActiveTask}
               />
             ))}
           </DragDropContext>
         </div>
       </section>
-      {isModalActive && (
-        <TaskModal setIsModalActive={setIsModalActive} setTasks={setTasks} />
+      {activeTask[0] && (
+        <TaskPanel
+          task={activeTask[1]}
+          setTasks={setTasks}
+          setActiveTask={setActiveTask}
+        />
       )}
     </div>
   );
