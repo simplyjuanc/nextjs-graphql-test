@@ -1,4 +1,4 @@
-import { DocumentNode, useMutation } from "@apollo/client";
+import { DocumentNode, useMutation, useQuery } from "@apollo/client";
 import { NexusGenObjects } from "../graphql-server/generated/types";
 
 export function filterTasksByStatus(
@@ -9,8 +9,8 @@ export function filterTasksByStatus(
 }
 
 
-export function useCustomMutation<T, V extends string, U>(mutationType: DocumentNode) {
-  const [mutate, { data, loading, error }] = useMutation<Record<V, U>>(mutationType);
+export function useCustomMutation<T, V extends string, U>(mutation: DocumentNode) {
+  const [mutate, { data, loading, error }] = useMutation<Record<V, U>>(mutation);
 
   const taskAction = async (args: T) => {
     try {
@@ -25,4 +25,12 @@ export function useCustomMutation<T, V extends string, U>(mutationType: Document
   };
 
   return { taskAction, payload: { data, loading, error } };
+}
+
+
+export function useCustomQuery<T>(query: DocumentNode, args?: Record<string, number | string>) {
+  const { data, loading, error } = useQuery<T>(query, { variables: args });
+  if (error) return error;
+  if (loading) return loading;
+  return data;
 }

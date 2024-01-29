@@ -21,6 +21,8 @@ export const TaskType = objectType({
         return ctx.prisma.task.findMany({
           where: { parentTaskId: parent.id },
           include: { status: true }
+        }).then(res => {
+          return res
         });
       }
     })
