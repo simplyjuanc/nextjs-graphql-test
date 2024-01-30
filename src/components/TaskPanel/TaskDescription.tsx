@@ -9,11 +9,13 @@ export const TaskDescription: React.FC<TaskArticleProps> = (props) => {
       <textarea
         name='description'
         id='description'
-        placeholder={props.task.description}
+        placeholder='Write the task description here...'
+        value={props.task.description ? props.task.description : ''}
         className={styles.description}
         wrap='hard'
         rows={5}
         cols={60}
+        onChange={props.handleChange}
       />
     </article>
   );

@@ -28,7 +28,7 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
   const { taskAction: updateTask } = useUpdateTask();
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     if (data) {
       const topLevelTasks = data.Task.filter((task) => !task.parentTaskId);
       setTasks(topLevelTasks);

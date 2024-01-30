@@ -28,6 +28,7 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
+          onClick={props.onClick}
         >
           <Button
             icon={MdOutlineDeleteForever}
@@ -37,7 +38,7 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
             justification='right'
             color='danger'
           />
-          <div onClick={props.onClick}>
+          <div>
             <h4 className={styles.title}>{props.task.title}</h4>
             {/* {props.task.description && (
               <p className={styles.description}>{props.task.description}</p>

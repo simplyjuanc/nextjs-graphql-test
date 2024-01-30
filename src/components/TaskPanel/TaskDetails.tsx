@@ -1,19 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './TaskPanel.module.css';
 import { TaskArticleProps } from './TaskPanel';
 
 export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
-  const [dueDate, setDueDate] = React.useState(props.task.dueDate);
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    setDueDate(e.target.value);
-  };
-
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     e.target.type = 'date';
   };
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    return (e.target.type = e.target.value ? 'text' : 'date');
+    e.target.type = e.target.value ? 'text' : 'date';
   };
 
   return (
@@ -22,7 +16,9 @@ export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
         type='text'
         name='title'
         id='title'
-        placeholder={props.task.title}
+        onChange={props.handleChange}
+        value={props.task?.title || ' '}
+        placeholder='Title...'
         className={styles.title}
       />
 
@@ -30,18 +26,25 @@ export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
         <div className={styles.dateItem}>
           <p>Due by: </p>
           <input
-            type='date'
+            type='text'
+            name='dueDate'
             className={styles.date}
-            onChange={handleDateChange}
+            onChange={props.handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            placeholder={dueDate && new Date(dueDate).toLocaleDateString()}
+            value={
+              props.task?.dueDate
+                ? new Date(props.task.dueDate).toLocaleDateString()
+                : 'No due date'
+            }
           />
         </div>
-        <div className={styles.dateItem}>
-          <p>Created on: </p>
-          <p>{new Date(props.task.createdAt).toLocaleDateString()}</p>
-        </div>
+        {props.task && (
+          <div className={styles.dateItem}>
+            <p>Created on: </p>
+            <p>{new Date(props.task.createdAt).toLocaleDateString()}</p>
+          </div>
+        )}
       </div>
     </article>
   );

@@ -1,28 +1,23 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useCreateTask, useUpdateTask } from '../../lib/mutations';
+import React, { useCallback, useState } from 'react';
+import { useCreateTask } from '../../lib/mutations';
 import { NexusGenObjects } from '../../graphql-server/generated/types';
 import Modal from '../ui/Modal/Modal';
 import TaskForm from '../TaskForm/TaskForm';
+import { useEscapeKey } from '../../hooks/useEscapeKey';
 
 interface TaskModalProps {
   setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>;
   setTasks: React.Dispatch<React.SetStateAction<NexusGenObjects['Task'][]>>;
   task?: NexusGenObjects['Task'];
+  action: 'add' | 'delete';
 }
 
 const TaskModal: React.FC<TaskModalProps> = (props) => {
-  const { taskAction: addTask } = useCreateTask();
-  const { taskAction: editTask } = useUpdateTask();
+  const { taskAction: createTask } = useCreateTask();
   const [taskDetails, setTaskDetails] = useState(props.task);
-  const closeModal = useCallback(() => props.setIsModalActive(false), [props]);
 
-  useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') closeModal();
-    }
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [closeModal]);
+  const closeModal = useCallback(() => props.setIsModalActive(false), [props]);
+  useEscapeKey(closeModal);
 
   const handleChange = (name: string, value: string) => {
     setTaskDetails((prevState) => ({
@@ -31,20 +26,8 @@ const TaskModal: React.FC<TaskModalProps> = (props) => {
     }));
   };
 
-  const handleEditTask = async () => {
-    const res = await editTask({
-      ...taskDetails,
-      status: taskDetails.status.id,
-    });
-    props.setTasks((prevTasks) => {
-      return prevTasks.map((task) => {
-        return task.id === res.updateTask.id ? res.updateTask : task;
-      });
-    });
-  };
-
   const handleAddTask = async () => {
-    const res = await addTask({
+    const res = await createTask({
       title: taskDetails.title,
       description: taskDetails.description,
       status: 1,
@@ -54,19 +37,17 @@ const TaskModal: React.FC<TaskModalProps> = (props) => {
 
   const handleSubmit = async () => {
     if (!taskDetails || !taskDetails.title) return;
-
-    props.task ? await handleEditTask() : await handleAddTask();
+    await handleAddTask();
     closeModal();
   };
 
-  const actionName = props.task ? 'Edit task' : 'Add task';
   return (
-    <Modal setIsModalActive={props.setIsModalActive} title={actionName}>
+    <Modal setIsModalActive={props.setIsModalActive} title='Add task'>
       <TaskForm
         task={taskDetails}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        actionName={actionName}
+        actionName='Add task'
       />
     </Modal>
   );

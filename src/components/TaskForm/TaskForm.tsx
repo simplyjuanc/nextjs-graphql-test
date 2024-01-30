@@ -17,7 +17,11 @@ const TaskForm: React.FC<TaskFormProps> = (props) => {
     props.onChange(e.target.name, e.target.value);
   };
   return (
-    <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+    <form
+      className={styles.form}
+      onSubmit={(e) => e.preventDefault()}
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className={styles.form__item}>
         <label htmlFor='title' className={styles.label}>
           Title
