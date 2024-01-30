@@ -16,6 +16,7 @@ export const GET_TASKS = gql`
         value
         text      
       }
+      parentTaskId
     }
   }
 `;
@@ -52,16 +53,3 @@ export interface QData<T> {
   data: T;
 }
 
-// export function useGetTasks() {
-//   const { data, error, loading } = useQuery<QueryData<NexusGenFieldTypes['Query']['Task']>>(GET_TASKS)
-//   if (error) return error;
-//   if (loading) return loading;
-//   return { data, loading, error };
-// }
-
-// export function useGetSubTasks(id: number) {
-//   const { data, loading, error } = useQuery<QueryData<NexusGenFieldTypes['Query']['getSubTasks']>>(GET_SUB_TASKS, { variables: { id } });
-//   if (error) return error;
-//   if (loading) return loading;
-//   return { data, loading, error };
-// }

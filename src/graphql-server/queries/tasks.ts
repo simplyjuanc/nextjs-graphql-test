@@ -1,5 +1,5 @@
 
-import { extendType, intArg, nonNull, objectType } from "nexus";
+import { extendType, intArg, nonNull } from "nexus";
 import { Context } from "../context";
 
 
@@ -10,7 +10,10 @@ export const getTasks = extendType({
       type: "Task",
       resolve: (_parent, _args, ctx) => {
         return ctx.prisma.task.findMany({
-          include: { status: true },
+          include: {
+            status: true,
+            parentTask: true,
+          },
         });
       },
     });

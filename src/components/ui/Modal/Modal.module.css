@@ -19,7 +19,7 @@
   border: solid var(--border-color) var(--border-width);
   border-radius: var(--border-radius-large);
   box-shadow: var(--box-shadow);
-  z-index: 2;
+  z-index: 20;
   padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;

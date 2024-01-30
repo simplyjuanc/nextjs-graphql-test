@@ -28,7 +28,11 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
   const { taskAction: updateTask } = useUpdateTask();
 
   useEffect(() => {
-    if (data) setTasks(data.Task);
+    console.log(data);
+    if (data) {
+      const topLevelTasks = data.Task.filter((task) => !task.parentTaskId);
+      setTasks(topLevelTasks);
+    }
   }, [data]);
 
   const onDragEnd = (result: DropResult) => {

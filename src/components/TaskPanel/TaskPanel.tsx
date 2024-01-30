@@ -54,12 +54,6 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
       justification: 'left',
       color: 'danger',
     },
-    // {
-    //   text: 'Cancel',
-    //   onClick: () => props.setActiveTask([false, undefined]),
-    //   justification: 'center',
-    //   color: 'secondary',
-    // },
     {
       text: 'Save',
       onClick: () => handleEdit,
@@ -70,9 +64,11 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
   return (
     <div
       className={overlayStyle.overlay}
-      onClick={() => props.setActiveTask([false, undefined])}
+      onClick={() => {
+        props.setActiveTask([false, undefined]);
+      }}
     >
-      <section className={styles.panel}>
+      <section className={styles.panel} onClick={(e) => e.stopPropagation()}>
         <TaskDetails task={props.task} handleChange={handleChange} />
         <TaskDescription task={props.task} handleChange={handleChange} />
         {/* <TaskSubList setSubTasks={setSubTasks} /> */}

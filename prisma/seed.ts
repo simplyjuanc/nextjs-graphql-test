@@ -39,33 +39,30 @@ const taskData: Prisma.TaskCreateInput[] = [
     status: { connect: { value: 'TO_DO' } },
   },
   {
+    title: "Sub-task 1",
+    createdAt: new Date(),
+    status: { connect: { value: 'TO_DO' } },
+    dueDate: new Date(),
+  },
+  {
+    title: "Sub-task 2",
+    createdAt: new Date(),
+    status: { connect: { value: 'TO_DO' } },
+    dueDate: new Date(),
+  },
+  {
+    title: "Sub-task 3",
+    createdAt: new Date(),
+    status: { connect: { value: 'TO_DO' } },
+    dueDate: new Date(),
+  },
+  {
     title: "Support sub-tasks",
     description: "Add support for array of sub-tasks on a task",
     createdAt: new Date(),
     status: { connect: { value: 'TO_DO' } },
     dueDate: new Date(),
-    childrenTasks: {
-      create: [
-        {
-          title: "Sub-task 1",
-          createdAt: new Date(),
-          status: { connect: { value: 'TO_DO' } },
-          dueDate: new Date(),
-        },
-        {
-          title: "Sub-task 2",
-          createdAt: new Date(),
-          status: { connect: { value: 'TO_DO' } },
-          dueDate: new Date(),
-        },
-        {
-          title: "Sub-task 3",
-          createdAt: new Date(),
-          status: { connect: { value: 'TO_DO' } },
-          dueDate: new Date(),
-        },
-      ]
-    },
+    childrenTasks: { connect: [{ id: 4 }, { id: 5 }, { id: 6 }] },
   },
 ];
 
