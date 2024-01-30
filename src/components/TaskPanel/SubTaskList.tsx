@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { MdOutlineAdd, MdOutlineDeleteForever } from 'react-icons/md';
+import React, { useEffect, useState } from 'react';
+import { MdOutlineAdd } from 'react-icons/md';
 import {
   NexusGenFieldTypes,
   NexusGenObjects,
@@ -9,7 +9,11 @@ import { GET_SUB_TASKS } from '../../lib/queries';
 import Spinner from '../ui/Spinner/Spinner';
 import Button from '../ui/Button/Button';
 import styles from './TaskPanel.module.css';
-import { useDeleteTask, useUpdateTask } from '../../hooks/useCustomMutation';
+import {
+  useCreateSubTask,
+  useDeleteTask,
+  useUpdateTask,
+} from '../../hooks/useCustomMutation';
 import SubTaskItem from './SubTaskItem';
 
 interface SubTaskListProps {
@@ -17,7 +21,8 @@ interface SubTaskListProps {
 }
 
 export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
-  const [subTasks, setSubTasks] = React.useState<NexusGenObjects['Task'][]>([]);
+  const [subTasks, setSubTasks] = useState<NexusGenObjects['Task'][]>([]);
+  const { taskAction: createSubTask } = useCreateSubTask();
   const { taskAction: deleteTask } = useDeleteTask();
   const { taskAction: updateTask } = useUpdateTask();
 
@@ -57,6 +62,18 @@ export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
     deleteTask({ id });
   };
 
+  const handleAddSubTask = async () => {
+    if (!props.parentTaskId) return;
+    const subTask = await createSubTask({
+      title: '',
+      description: '',
+      status: 1,
+      parentTaskId: props.parentTaskId,
+    });
+
+    setSubTasks((prev) => [...prev, subTask.createSubTask]);
+  };
+
   return loading ? (
     <Spinner dimensions={200} alt={'Logo spinner'} />
   ) : (
@@ -70,14 +87,15 @@ export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
           <div className={styles.gridHeader}>Due date</div>
         </div>
         <div className={styles.gridContainer}>
-          {subTasks.map((task) => (
-            <SubTaskItem
-              key={task.id}
-              task={task}
-              handleChange={handleChange}
-              handleDelete={handleDelete}
-            />
-          ))}
+          {subTasks.length > 0 &&
+            subTasks.map((task) => (
+              <SubTaskItem
+                key={task.id}
+                task={task}
+                handleChange={handleChange}
+                handleDelete={handleDelete}
+              />
+            ))}
         </div>
       </div>
       <div className={styles.btnContainer}>
@@ -86,7 +104,7 @@ export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
           size='small'
           justification='right'
           text='Add sub-task'
-          onClick={() => console.log('click')}
+          onClick={handleAddSubTask}
         />
       </div>
     </article>

@@ -15,8 +15,28 @@ export const CREATE_TASK = gql`
     }
   }`
 
+
+export const CREATE_SUB_TASK = gql`
+  mutation createSubTask($title: String!, $description: String, $status: Int!, $parentTaskId: Int!) {
+    createSubTask(title: $title, description: $description, status: $status, parentTaskId: $parentTaskId) {
+      id
+      description
+      createdAt
+      title
+      parentTaskId
+      dueDate
+      status {
+        id
+        text
+        value
+      }
+    }
+  }`
+
+
+
 export const UPDATE_TASK = gql`
-  mutation UpdateTask($id: Int!, $title: String, $description: String, $status: Int) {
+  mutation updateTask($id: Int!, $title: String, $description: String, $status: Int) {
     updateTask(id: $id, title: $title, description: $description, status: $status) {
       id
       title

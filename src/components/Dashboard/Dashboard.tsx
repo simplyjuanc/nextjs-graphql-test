@@ -7,13 +7,13 @@ import TaskList from '../TaskList/TaskList';
 import Spinner from '../ui/Spinner/Spinner';
 import { GET_TASKS } from '../../lib/queries';
 import styles from './Dashboard.module.css';
-import { useUpdateTask } from '../../hooks/useCustomMutation';
 import { filterTasksByStatus } from '../../lib/utils';
 import {
   NexusGenFieldTypes,
   NexusGenObjects,
 } from '../../graphql-server/generated/types';
 import TaskPanel from '../TaskPanel/TaskPanel';
+import { useUpdateTask } from '../../hooks/useCustomMutation';
 
 interface DashboardProps {
   statusOptions: NexusGenObjects['Status'][];
@@ -28,7 +28,6 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
   const { taskAction: updateTask } = useUpdateTask();
 
   useEffect(() => {
-    // console.log(data);
     if (data) {
       const topLevelTasks = data.Task.filter((task) => !task.parentTaskId);
       setTasks(topLevelTasks);
@@ -37,7 +36,6 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
 
   const onDragEnd = (result: DropResult) => {
     const { draggableId, destination, source } = result;
-    // console.log({ di: destination.index, si: source.index });
     if (!destination) return;
     if (
       destination.droppableId === source.droppableId &&

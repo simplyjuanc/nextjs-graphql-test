@@ -1,6 +1,7 @@
 import { DocumentNode, useMutation, useQuery } from "@apollo/client";
 import { NexusGenArgTypes, NexusGenObjects } from "../graphql-server/generated/types";
-import { CREATE_TASK, UPDATE_TASK, DELETE_TASK } from "../lib/mutations";
+import { CREATE_TASK, UPDATE_TASK, DELETE_TASK, CREATE_SUB_TASK } from "../lib/mutations";
+import { getOperationAST } from "graphql";
 
 
 export interface QData<T> {
@@ -9,6 +10,7 @@ export interface QData<T> {
 
 
 function useCustomMutation<T, V extends string, U>(mutation: DocumentNode) {
+  const mutationName = getOperationAST(mutation).name?.value;
   const [mutate, { data, loading, error }] = useMutation<Record<V, U>>(mutation);
 
   const taskAction = async (args: T) => {
@@ -32,6 +34,12 @@ export const useCreateTask = () => useCustomMutation<
   'createTask',
   NexusGenObjects['Task']
 >(CREATE_TASK);
+
+export const useCreateSubTask = () => useCustomMutation<
+  NexusGenArgTypes['Mutation']['createSubTask'],
+  'createSubTask',
+  NexusGenObjects['Task']>(CREATE_SUB_TASK);
+
 
 export const useUpdateTask = () => useCustomMutation<
   NexusGenArgTypes['Mutation']['updateTask'],

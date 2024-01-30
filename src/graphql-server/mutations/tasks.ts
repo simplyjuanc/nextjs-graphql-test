@@ -13,7 +13,7 @@ export const createTask = extendType({
       args: {
         title: nonNull(stringArg()),
         description: stringArg({ default: "" }),
-        status: nonNull(intArg({ default: 0 })),
+        status: nonNull(intArg()),
         parentTaskId: intArg(),
         dueDate: stringArg(),
       },
@@ -30,6 +30,35 @@ export const createTask = extendType({
     });
   },
 });
+
+
+export const createSubTask = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.nonNull.field("createSubTask", {
+      type: "Task",
+      args: {
+        title: stringArg({ default: "" }),
+        description: stringArg({ default: "" }),
+        status: intArg({ default: 1 }),
+        parentTaskId: nonNull(intArg()),
+        dueDate: stringArg(),
+      },
+      resolve: (_, args, ctx: Context) => {
+        return ctx.prisma.task.create({
+          data: {
+            title: args.title,
+            description: args.description,
+            status: { connect: { id: args.status } },
+            parentTask: { connect: { id: args.parentTaskId } },
+          },
+          include: { status: true },
+        });
+      },
+    });
+  },
+});
+
 
 
 export const updateTask = extendType({
@@ -78,25 +107,3 @@ export const deleteTask = extendType({
   },
 });
 
-
-export const connectSubTask = extendType({
-  type: "Mutation",
-  definition(t) {
-    t.field("connectSubTask", {
-      type: "Task",
-      args: {
-        id: nonNull(intArg()),
-        subTaskId: nonNull(intArg()),
-      },
-      resolve: (_, args, ctx: Context) => {
-        return ctx.prisma.task.update({
-          where: { id: args.id },
-          data: {
-            childrenTasks: { connect: { id: args.subTaskId } }
-          },
-          include: { status: true },
-        })
-      }
-    })
-  }
-});
