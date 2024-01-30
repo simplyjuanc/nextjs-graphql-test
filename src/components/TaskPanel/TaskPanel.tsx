@@ -1,22 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { NexusGenObjects } from '../../graphql-server/generated/types';
-import Spinner from '../ui/Spinner/Spinner';
-import { useQuery } from '@apollo/client';
-import { GET_SUB_TASKS } from '../../lib/queries';
 import styles from './TaskPanel.module.css';
 import overlayStyle from '../ui/Modal/Modal.module.css';
 import BtnActions from '../ui/ButtonActions/BtnActionsProps';
 import { ButtonProps } from '../ui/Button/Button';
-import { TaskSubList } from './TaskSubList';
+import { SubTaskList } from './SubTaskList';
 import { TaskDescription } from './TaskDescription';
 import { TaskDetails } from './TaskDetails';
 import Modal from '../ui/Modal/Modal';
 import { useEscapeKey } from '../../hooks/useEscapeKey';
 import {
   useCreateTask,
-  useDeleteTask,
   useUpdateTask,
-} from '../../lib/mutations';
+  useDeleteTask,
+} from '../../hooks/useCustomMutation';
 
 interface TaskPanelProps {
   task?: NexusGenObjects['Task'];
@@ -43,25 +40,13 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
   const closeModal = useCallback(() => setIsModalActive(false), []);
   useEscapeKey(closeModal);
 
-  /* TODO: Finish configuring subTask fetching
-  const [subTasks, setSubTasks] = useState<NexusGenObjects['Task'][]>([]);
-  const { loading, data } = useQuery<NexusGenFieldTypes['Query']['Task']>(
-    GET_SUB_TASKS,
-    { variables: { id: props.task.id } }
-  );
-
-  if (loading) return <Spinner />;
- */
-
   const handleDelete = () => {
     props.setTasks((prev) => prev.filter((task) => task.id !== props.task.id));
     deleteTask({ id: props.task.id });
   };
 
   const handleSave = async () => {
-    console.log(taskDetails);
     if (!taskDetails?.title) return;
-    console.log(taskDetails);
 
     if (!props.task) {
       const newTask = await createTask({
@@ -75,7 +60,6 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
         ...taskDetails,
         status: taskDetails.status.id,
       });
-      console.log('updatedTask :>> ', updatedTask);
       props.setTasks((prevTasks) =>
         prevTasks.map((task) => {
           return task.id !== props.task.id ? task : updatedTask.updateTask;
@@ -93,7 +77,6 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
       e.target.value = new Date(e.target.value).toISOString();
     }
 
-    console.log(e.target.name, e.target.value);
     setTaskDetails((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
@@ -129,6 +112,21 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
 
   return (
     <>
+      <div
+        className={overlayStyle.overlay}
+        onClick={() => props.setActiveTask([false, undefined])}
+      >
+        <section className={styles.panel} onClick={(e) => e.stopPropagation()}>
+          <TaskDetails task={taskDetails} handleChange={handleChange} />
+          <TaskDescription task={taskDetails} handleChange={handleChange} />
+          <SubTaskList parentTaskId={taskDetails?.id} />
+          {taskDetails ? (
+            <BtnActions buttons={actionBtns} />
+          ) : (
+            <BtnActions buttons={[actionBtns[1]]} />
+          )}
+        </section>
+      </div>
       {isModalActive && (
         <Modal setIsModalActive={setIsModalActive}>
           <div
@@ -140,21 +138,6 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
           </div>
         </Modal>
       )}
-      <div
-        className={overlayStyle.overlay}
-        onClick={() => props.setActiveTask([false, undefined])}
-      >
-        <section className={styles.panel} onClick={(e) => e.stopPropagation()}>
-          <TaskDetails task={taskDetails} handleChange={handleChange} />
-          <TaskDescription task={taskDetails} handleChange={handleChange} />
-          {/* <TaskSubList setSubTasks={setSubTasks} /> */}
-          {taskDetails ? (
-            <BtnActions buttons={actionBtns} />
-          ) : (
-            <BtnActions buttons={[actionBtns[1]]} />
-          )}
-        </section>
-      </div>
     </>
   );
 };
