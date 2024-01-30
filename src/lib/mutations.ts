@@ -22,13 +22,15 @@ const CREATE_TASK = gql`
 const UPDATE_TASK = gql`
   mutation UpdateTask($id: Int!, $title: String, $description: String, $status: Int) {
     updateTask(id: $id, title: $title, description: $description, status: $status) {
+      id
       title
       description
       createdAt
+      dueDate
       status {
+        id
         value
         text
-        id
       }
     }
   }`

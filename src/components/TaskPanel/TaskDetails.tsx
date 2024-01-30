@@ -10,6 +10,11 @@ export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
     e.target.type = e.target.value ? 'text' : 'date';
   };
 
+  if (props.task?.dueDate) {
+    console.log('typeof props.task.dueDate :>> ', typeof props.task.dueDate);
+    console.log('props.task.dueDate :>> ', props.task.dueDate);
+  }
+
   return (
     <article className={styles.panelArticle}>
       <input
@@ -17,7 +22,7 @@ export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
         name='title'
         id='title'
         onChange={props.handleChange}
-        value={props.task?.title || ' '}
+        value={props.task?.title || 'Title...'}
         placeholder='Title...'
         className={styles.title}
       />
@@ -39,7 +44,7 @@ export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
             }
           />
         </div>
-        {props.task && (
+        {props.task?.createdAt && (
           <div className={styles.dateItem}>
             <p>Created on: </p>
             <p>{new Date(props.task.createdAt).toLocaleDateString()}</p>

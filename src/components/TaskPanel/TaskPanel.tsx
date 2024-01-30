@@ -62,6 +62,7 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
     console.log(taskDetails);
     if (!taskDetails?.title) return;
     console.log(taskDetails);
+
     if (!props.task) {
       const newTask = await createTask({
         title: taskDetails.title,
@@ -74,12 +75,15 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
         ...taskDetails,
         status: taskDetails.status.id,
       });
+      console.log('updatedTask :>> ', updatedTask);
       props.setTasks((prevTasks) =>
         prevTasks.map((task) => {
           return task.id !== props.task.id ? task : updatedTask.updateTask;
         })
       );
     }
+
+    props.setActiveTask([false, undefined]);
   };
 
   const handleChange = (

@@ -5,7 +5,6 @@ import { GET_STATUSES } from '../lib/queries';
 import { useQuery } from '@apollo/client';
 import Spinner from '../components/ui/Spinner/Spinner';
 import { NexusGenFieldTypes } from '../graphql-server/generated/types';
-import Sidebar from '../components/common/Sidebar';
 import Header from '../components/ui/Header/Header';
 import Footer from '../components/ui/Footer/Footer';
 

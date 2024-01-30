@@ -1,5 +1,6 @@
 import { objectType } from "nexus";
 import { Task, Status } from "nexus-prisma";
+import { DateTime } from "./schema";
 
 
 
@@ -11,8 +12,8 @@ export const TaskType = objectType({
     t.nonNull.field(Task.id);
     t.nonNull.field(Task.title);
     t.field(Task.description);
-    t.nonNull.field(Task.createdAt);
-    t.field(Task.dueDate);
+    t.nonNull.field('createdAt', { type: 'DateTime' });
+    t.field('dueDate', { type: 'DateTime' });
     t.nonNull.field('status', { type: StatusType });
     t.field('parentTaskId', Task.parentTaskId);
     t.field('parentTask', {

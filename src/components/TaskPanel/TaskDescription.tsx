@@ -10,7 +10,7 @@ export const TaskDescription: React.FC<TaskArticleProps> = (props) => {
         name='description'
         id='description'
         placeholder='Write the task description here...'
-        value={props.task.description ? props.task.description : ''}
+        value={props.task?.description ? props.task.description : ''}
         className={styles.description}
         wrap='hard'
         rows={5}
