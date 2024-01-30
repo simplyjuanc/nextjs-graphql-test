@@ -28,23 +28,26 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          onClick={props.onClick}
         >
-          <Button
-            icon={MdOutlineDeleteForever}
-            onClick={handleDelete}
-            size='small'
-            position='absolute'
-            justification='right'
-            color='danger'
-          />
-          <div>
+          <div className={styles.btnContainer}>
+            <Button
+              icon={MdOutlineDeleteForever}
+              onClick={handleDelete}
+              size='small'
+              position='absolute'
+              justification='right'
+              color='danger'
+            />
+          </div>
+
+          <div className={styles.cardContent} onClick={props.onClick}>
             <h4 className={styles.title}>{props.task.title}</h4>
-            {/* {props.task.description && (
-              <p className={styles.description}>{props.task.description}</p>
-            )} */}
             {props.task.dueDate && (
-              <p className={styles.date}>
+              <p
+                className={
+                  props.task.status.id === 3 ? styles.dateCrossed : styles.date
+                }
+              >
                 Due: {new Date(props.task.createdAt).toLocaleDateString()}
               </p>
             )}

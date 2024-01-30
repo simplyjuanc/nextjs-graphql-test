@@ -9,8 +9,18 @@
   text-align: left;
   margin-bottom: var(--spacing-medium);
   cursor: pointer;
-  padding: var(--spacing-small);
   position: relative;
+}
+
+.cardContent {
+  height: 100%;
+  width: 100%;
+  padding: var(--spacing-small);
+}
+
+.btnContainer {
+  margin-top: var(--spacing-small);
+  margin-right: var(--spacing-small);
 }
 
 .title {
@@ -21,6 +31,12 @@
 .date {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-light);
+}
+
+.dateCrossed {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-light);
+  text-decoration: line-through;
 }
 
 .description {
