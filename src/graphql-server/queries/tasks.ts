@@ -68,7 +68,7 @@ export const getSubTasks = extendType({
       },
       resolve: (_parent, args, ctx: Context) => {
         return ctx.prisma.task.findMany({
-          where: { id: args.id },
+          where: { parentTaskId: args.id },
           include: { status: true },
         });
       },

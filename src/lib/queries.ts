@@ -35,21 +35,17 @@ export const GET_STATUSES = gql`
 export const GET_SUB_TASKS = gql`
   query getSubTasks($id: Int!) {
     getSubTasks(id: $id) {
-      childrenTasks {
+      id
+      createdAt
+      dueDate
+      title
+      description
+      status {
         id
-        createdAt
-        dueDate
-        title
-        description
-        status {
-          id
-        }
+        value
+        text
       }
     }
   }
 `;
-
-export interface QData<T> {
-  data: T;
-}
 

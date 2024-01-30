@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './TaskPanel.module.css';
 import { TaskArticleProps } from './TaskPanel';
 
@@ -10,17 +10,11 @@ export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
     e.target.type = e.target.value ? 'text' : 'date';
   };
 
-  if (props.task?.dueDate) {
-    console.log('typeof props.task.dueDate :>> ', typeof props.task.dueDate);
-    console.log('props.task.dueDate :>> ', props.task.dueDate);
-  }
-
   return (
     <article className={styles.panelArticle}>
       <input
         type='text'
         name='title'
-        id='title'
         onChange={props.handleChange}
         value={props.task?.title || 'Title...'}
         placeholder='Title...'

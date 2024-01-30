@@ -1,5 +1,6 @@
 import { extendType, intArg, nonNull, stringArg } from "nexus";
 import { Context } from "../context";
+import { DateTime } from "../schema";
 
 
 
@@ -13,6 +14,8 @@ export const createTask = extendType({
         title: nonNull(stringArg()),
         description: stringArg({ default: "" }),
         status: nonNull(intArg({ default: 0 })),
+        parentTaskId: intArg(),
+        dueDate: stringArg(),
       },
       resolve: (_, args, ctx: Context) => {
         return ctx.prisma.task.create({
@@ -39,6 +42,8 @@ export const updateTask = extendType({
         title: stringArg(),
         description: stringArg(),
         status: intArg(),
+        dueDate: stringArg(),
+
       },
       resolve: (_, { id, status, ...args }, ctx: Context) => {
         return ctx.prisma.task.update({
@@ -87,7 +92,7 @@ export const connectSubTask = extendType({
         return ctx.prisma.task.update({
           where: { id: args.id },
           data: {
-            childTasks: { connect: { id: args.subTaskId } }
+            childrenTasks: { connect: { id: args.subTaskId } }
           },
           include: { status: true },
         })

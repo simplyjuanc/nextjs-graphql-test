@@ -7,7 +7,7 @@ import TaskList from '../TaskList/TaskList';
 import Spinner from '../ui/Spinner/Spinner';
 import { GET_TASKS } from '../../lib/queries';
 import styles from './Dashboard.module.css';
-import { useUpdateTask } from '../../lib/mutations';
+import { useUpdateTask } from '../../hooks/useCustomMutation';
 import { filterTasksByStatus } from '../../lib/utils';
 import {
   NexusGenFieldTypes,

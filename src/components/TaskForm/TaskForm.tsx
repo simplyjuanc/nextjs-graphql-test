@@ -29,7 +29,6 @@ const TaskForm: React.FC<TaskFormProps> = (props) => {
         <input
           type='text'
           name='title'
-          id='title'
           value={props.task?.title || ''}
           className={styles.form__input}
           onChange={handleInputChange}
@@ -41,7 +40,6 @@ const TaskForm: React.FC<TaskFormProps> = (props) => {
         </label>
         <textarea
           name='description'
-          id='description'
           cols={20}
           rows={5}
           value={props.task?.description || ''}

@@ -6,7 +6,7 @@ export interface ButtonProps {
   icon?: IconType;
   text?: string;
   onClick: () => void;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xs' | 'small' | 'medium' | 'large';
   color?: 'default' | 'secondary' | 'warning' | 'danger' | 'success';
   position?: 'absolute' | 'relative' | 'static';
   justification?: 'left' | 'right' | 'center';

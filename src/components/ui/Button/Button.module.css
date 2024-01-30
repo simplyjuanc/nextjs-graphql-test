@@ -20,6 +20,14 @@
   transform: scale(1.2);
 }
 
+/* Size variations */
+.__xs {
+  padding: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  border-radius: var(--border-radius-small);
+  gap: var(--spacing-xs);
+}
+
 .__small {
   padding: var(--spacing-small);
   font-size: var(--font-size-small);

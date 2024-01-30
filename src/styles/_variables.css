@@ -25,6 +25,7 @@
 
   /* Spacing */
   --spacing-medium: 1rem;
+  --spacing-xs: calc(var(--spacing-medium) * 0.25);
   --spacing-small: calc(var(--spacing-medium) * 0.5);
   --spacing-large: calc(var(--spacing-medium) * 2);
   --spacing-xl: calc(var(--spacing-medium) * 3);

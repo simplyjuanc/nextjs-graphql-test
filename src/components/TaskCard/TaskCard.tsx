@@ -4,7 +4,7 @@ import { Draggable } from '@hello-pangea/dnd';
 import styles from './TaskCard.module.css';
 import Button from '../ui/Button/Button';
 import { MdOutlineDeleteForever } from 'react-icons/md';
-import { useDeleteTask } from '../../lib/mutations';
+import { useDeleteTask } from '../../hooks/useCustomMutation';
 
 interface TaskCardProps {
   index: number;
