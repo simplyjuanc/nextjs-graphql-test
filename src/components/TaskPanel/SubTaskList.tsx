@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { MdOutlineAdd } from 'react-icons/md';
-import {
-  NexusGenFieldTypes,
-  NexusGenObjects,
-} from '../../graphql-server/generated/types';
 import { useQuery } from '@apollo/client';
 import { GET_SUB_TASKS } from '../../lib/queries';
 import Spinner from '../ui/Spinner/Spinner';
@@ -15,21 +11,21 @@ import {
   useUpdateTask,
 } from '../../hooks/useCustomMutation';
 import SubTaskItem from './SubTaskItem';
+import { GetSubTasksQuery, Task } from '../../gql/graphql';
 
 interface SubTaskListProps {
   parentTaskId?: number;
 }
 
 export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
-  const [subTasks, setSubTasks] = useState<NexusGenObjects['Task'][]>([]);
+  const [subTasks, setSubTasks] = useState<Task[]>([]);
   const { taskAction: createSubTask } = useCreateSubTask();
   const { taskAction: deleteTask } = useDeleteTask();
   const { taskAction: updateTask } = useUpdateTask();
 
-  const { loading, data } = useQuery<NexusGenFieldTypes['Query']>(
-    GET_SUB_TASKS,
-    { variables: { id: props.parentTaskId } }
-  );
+  const { loading, data } = useQuery<GetSubTasksQuery>(GET_SUB_TASKS, {
+    variables: { id: props.parentTaskId },
+  });
 
   useEffect(() => {
     if (data) setSubTasks(data.getSubTasks);
@@ -42,18 +38,15 @@ export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
     const updatedTasks = await Promise.all(
       subTasks.map(async (task) => {
         if (task.id !== id) return task;
-
         const newStatusId = e.target.checked ? 3 : 1;
         const updatedTask = await updateTask({
           ...task,
           [e.target.name]: e.target.value,
           status: newStatusId,
         });
-
         return updatedTask.updateTask;
       })
     );
-
     setSubTasks(updatedTasks);
   };
 
@@ -70,7 +63,6 @@ export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
       status: 1,
       parentTaskId: props.parentTaskId,
     });
-
     setSubTasks((prev) => [...prev, subTask.createSubTask]);
   };
 

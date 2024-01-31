@@ -1,7 +1,6 @@
-import { DocumentNode, useMutation, useQuery } from "@apollo/client";
-import { NexusGenArgTypes, NexusGenObjects } from "../graphql-server/generated/types";
+import { DocumentNode, useMutation } from "@apollo/client";
 import { CREATE_TASK, UPDATE_TASK, DELETE_TASK, CREATE_SUB_TASK } from "../lib/mutations";
-import { getOperationAST } from "graphql";
+import { CreateSubTaskMutation, CreateSubTaskMutationVariables, CreateTaskMutation, CreateTaskMutationVariables, DeleteTaskMutation, DeleteTaskMutationVariables, Task, UpdateTaskMutation, UpdateTaskMutationVariables } from "../gql/graphql";
 
 
 export interface QData<T> {
@@ -9,9 +8,8 @@ export interface QData<T> {
 }
 
 
-function useCustomMutation<T, V extends string, U>(mutation: DocumentNode) {
-  const mutationName = getOperationAST(mutation).name?.value;
-  const [mutate, { data, loading, error }] = useMutation<Record<V, U>>(mutation);
+function useCustomMutation<T, U>(mutation: DocumentNode) {
+  const [mutate, { data, loading, error }] = useMutation<U>(mutation);
 
   const taskAction = async (args: T) => {
     try {
@@ -29,26 +27,23 @@ function useCustomMutation<T, V extends string, U>(mutation: DocumentNode) {
 }
 
 
+
 export const useCreateTask = () => useCustomMutation<
-  NexusGenArgTypes['Mutation']['createTask'],
-  'createTask',
-  NexusGenObjects['Task']
+  CreateTaskMutationVariables,
+  CreateTaskMutation
 >(CREATE_TASK);
 
 export const useCreateSubTask = () => useCustomMutation<
-  NexusGenArgTypes['Mutation']['createSubTask'],
-  'createSubTask',
-  NexusGenObjects['Task']>(CREATE_SUB_TASK);
+  CreateSubTaskMutationVariables,
+  CreateSubTaskMutation>(CREATE_SUB_TASK);
 
 
 export const useUpdateTask = () => useCustomMutation<
-  NexusGenArgTypes['Mutation']['updateTask'],
-  'updateTask',
-  NexusGenObjects['Task']
+  UpdateTaskMutationVariables,
+  UpdateTaskMutation
 >(UPDATE_TASK);
 
 export const useDeleteTask = () => useCustomMutation<
-  NexusGenArgTypes['Mutation']['deleteTask'],
-  'deleteTask',
-  NexusGenObjects['Task']
+  DeleteTaskMutationVariables,
+  DeleteTaskMutation
 >(DELETE_TASK);

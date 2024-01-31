@@ -11,6 +11,7 @@ export const GET_TASKS = gql`
       description
       createdAt
       dueDate
+      listPosition
       status {
         id
         value
@@ -40,6 +41,7 @@ export const GET_SUB_TASKS = gql`
       dueDate
       title
       description
+      listPosition
       status {
         id
         value

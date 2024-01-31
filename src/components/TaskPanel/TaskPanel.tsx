@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import { NexusGenObjects } from '../../graphql-server/generated/types';
 import styles from './TaskPanel.module.css';
 import overlayStyle from '../ui/Modal/Modal.module.css';
 import BtnActions from '../ui/ButtonActions/BtnActionsProps';
@@ -14,17 +13,18 @@ import {
   useUpdateTask,
   useDeleteTask,
 } from '../../hooks/useCustomMutation';
+import { Task } from '../../gql/graphql';
 
 interface TaskPanelProps {
-  task?: NexusGenObjects['Task'];
-  setTasks: React.Dispatch<React.SetStateAction<NexusGenObjects['Task'][]>>;
+  task?: Task;
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   setActiveTask: React.Dispatch<
-    React.SetStateAction<[boolean, NexusGenObjects['Task'] | undefined]>
+    React.SetStateAction<[boolean, Task | undefined]>
   >;
 }
 
 export interface TaskArticleProps {
-  task?: NexusGenObjects['Task'];
+  task?: Task;
   handleChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;

@@ -1,11 +1,12 @@
 import { gql } from "@apollo/client"
 
 export const CREATE_TASK = gql`
-  mutation createTask($title: String!, $description: String, $status: Int!) {
+  mutation createTask($title: String!, $description: String, $status: Int!, $dueDate: DateTime) {
     createTask(title: $title, description: $description, status: $status) {
       id
       description
       createdAt
+      dueDate
       title
       status {
         id
@@ -43,6 +44,7 @@ export const UPDATE_TASK = gql`
       description
       createdAt
       dueDate
+      listPosition
       status {
         id
         value
