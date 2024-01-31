@@ -1,15 +1,14 @@
 import React, { useCallback, useState } from 'react';
-import { useCreateTask } from '../../lib/mutations';
-import { NexusGenObjects } from '../../graphql-server/generated/types';
 import Modal from '../ui/Modal/Modal';
 import TaskForm from '../TaskForm/TaskForm';
 import { useEscapeKey } from '../../hooks/useEscapeKey';
+import { useCreateTask } from '../../hooks/useCustomMutation';
+import { Task } from '../../gql/graphql';
 
 interface TaskModalProps {
+  task?: Task;
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>;
-  setTasks: React.Dispatch<React.SetStateAction<NexusGenObjects['Task'][]>>;
-  task?: NexusGenObjects['Task'];
-  action: 'add' | 'delete';
 }
 
 const TaskModal: React.FC<TaskModalProps> = (props) => {

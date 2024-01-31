@@ -1,10 +1,10 @@
 import { MdOutlineDeleteForever } from 'react-icons/md';
-import { NexusGenObjects } from '../../graphql-server/generated/types';
 import Button from '../ui/Button/Button';
 import styles from './TaskPanel.module.css';
+import { Task } from '../../gql/graphql';
 
 interface SubTaskItemProps {
-  task: NexusGenObjects['Task'];
+  task: Task;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement>,
     id: number

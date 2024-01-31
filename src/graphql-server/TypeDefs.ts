@@ -14,6 +14,7 @@ export const TaskType = objectType({
     t.nonNull.field('createdAt', { type: 'DateTime' });
     t.field('dueDate', { type: 'DateTime' });
     t.nonNull.field('status', { type: StatusType });
+    t.int('listPosition');
     t.field('parentTaskId', Task.parentTaskId);
     t.field('parentTask', {
       type: TaskType,

@@ -1,10 +1,10 @@
 import React from 'react';
 import Button from '../ui/Button/Button';
 import styles from './TaskForm.module.css';
-import { NexusGenObjects } from '../../graphql-server/generated/types';
+import { Task } from '../../gql/graphql';
 
 interface TaskFormProps {
-  task?: NexusGenObjects['Task'];
+  task?: Task;
   actionName: string;
   onChange: (name: string, value: string) => void;
   onSubmit: () => void;

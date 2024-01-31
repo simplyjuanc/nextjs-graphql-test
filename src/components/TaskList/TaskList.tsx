@@ -1,20 +1,20 @@
 import React from 'react';
-import { NexusGenObjects } from '../../graphql-server/generated/types';
 import { Droppable } from '@hello-pangea/dnd';
 import styles from './TaskList.module.css';
 import TaskCard from '../TaskCard/TaskCard';
+import { Status, Task } from '../../gql/graphql';
 
 interface TaskListProps {
-  status: NexusGenObjects['Status'];
-  tasks?: NexusGenObjects['Task'][];
-  setTasks: React.Dispatch<React.SetStateAction<NexusGenObjects['Task'][]>>;
+  status: Status;
+  tasks?: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   setActiveTask: React.Dispatch<
-    React.SetStateAction<[boolean, NexusGenObjects['Task'] | undefined]>
+    React.SetStateAction<[boolean, Task | undefined]>
   >;
 }
 
 const TaskList: React.FC<TaskListProps> = (props) => {
-  const handleTaskClick = (task: NexusGenObjects['Task']) => {
+  const handleTaskClick = (task: Task) => {
     props.setActiveTask([true, task]);
   };
 

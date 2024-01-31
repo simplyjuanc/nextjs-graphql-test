@@ -1,16 +1,16 @@
 import React from 'react';
-import { NexusGenObjects } from '../../graphql-server/generated/types';
 import { Draggable } from '@hello-pangea/dnd';
 import styles from './TaskCard.module.css';
 import Button from '../ui/Button/Button';
 import { MdOutlineDeleteForever } from 'react-icons/md';
 import { useDeleteTask } from '../../hooks/useCustomMutation';
+import { Task } from '../../gql/graphql';
 
 interface TaskCardProps {
   index: number;
-  task: NexusGenObjects['Task'];
+  task: Task;
   onClick?: <T>(arg: T) => void;
-  setTasks: React.Dispatch<React.SetStateAction<NexusGenObjects['Task'][]>>;
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
 const TaskCard: React.FC<TaskCardProps> = (props) => {

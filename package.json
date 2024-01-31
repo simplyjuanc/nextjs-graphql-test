@@ -9,7 +9,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
+    "generate": "npm -s run generate:prisma && npm -s run generate:nexus && npm -s run codegen",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' --transpile-only src/graphql-server/schema.ts",
     "codegen": "graphql-codegen --config codegen.ts"

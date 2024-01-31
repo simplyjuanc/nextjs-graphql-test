@@ -8,28 +8,27 @@ import Spinner from '../ui/Spinner/Spinner';
 import { GET_TASKS } from '../../lib/queries';
 import styles from './Dashboard.module.css';
 import { filterTasksByStatus } from '../../lib/utils';
-import {
-  NexusGenFieldTypes,
-  NexusGenObjects,
-} from '../../graphql-server/generated/types';
 import TaskPanel from '../TaskPanel/TaskPanel';
 import { useUpdateTask } from '../../hooks/useCustomMutation';
+import { Query, Status, Task, TaskQuery } from '../../gql/graphql';
 
 interface DashboardProps {
-  statusOptions: NexusGenObjects['Status'][];
+  statusOptions: Status[];
 }
 
 const Dashboard: React.FC<DashboardProps> = (props) => {
-  const { loading, data } = useQuery<NexusGenFieldTypes['Query']>(GET_TASKS);
-  const [tasks, setTasks] = useState<NexusGenObjects['Task'][]>([]);
-  const [activeTask, setActiveTask] = useState<
-    [boolean, NexusGenObjects['Task'] | undefined]
-  >([false, undefined]);
+  const { loading, data } = useQuery<TaskQuery>(GET_TASKS);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [activeTask, setActiveTask] = useState<[boolean, Task | undefined]>([
+    false,
+    undefined,
+  ]);
   const { taskAction: updateTask } = useUpdateTask();
 
   useEffect(() => {
     if (data) {
       const topLevelTasks = data.Task.filter((task) => !task.parentTaskId);
+      console.log('topLevelTasks :>> ', topLevelTasks);
       setTasks(topLevelTasks);
     }
   }, [data]);
@@ -43,6 +42,9 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     ) {
       return;
     }
+
+    console.log('source.index :>> ', source.index);
+    console.log('destination.index :>> ', destination.index);
 
     const updatedTasks = tasks.map((task) => {
       if (task.id.toString() !== draggableId) return task;
