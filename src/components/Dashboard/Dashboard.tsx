@@ -63,8 +63,6 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     setTasks(updatedTasks);
   };
 
-  const handleAddTask = () => setActiveTask((prev) => [true, undefined]);
-
   return loading ? (
     <Spinner dimensions={200} alt={'Logo spinner'} />
   ) : (
@@ -72,7 +70,7 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
       <Button
         icon={MdOutlineAdd}
         text={'Add Task'}
-        onClick={handleAddTask}
+        onClick={() => setActiveTask([true, undefined])}
         size='large'
       />
       <section className={styles.canvas}>

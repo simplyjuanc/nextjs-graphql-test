@@ -13,6 +13,14 @@ interface SubTaskItemProps {
 }
 
 const SubTaskItem: React.FC<SubTaskItemProps> = (props) => {
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.type = 'date';
+  };
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    // e.target.type = e.target.value ? 'text' : 'date';
+    e.target.type = 'text';
+  };
+
   return (
     <>
       <div className={styles.gridItem}>
@@ -45,18 +53,6 @@ const SubTaskItem: React.FC<SubTaskItemProps> = (props) => {
           name='description'
           onChange={(e) => props.handleChange(e, props.task.id)}
           value={props.task.description || ''}
-        />
-      </div>
-      <div className={styles.gridItem}>
-        <input
-          type='text'
-          name='dueDate'
-          onChange={(e) => props.handleChange(e, props.task.id)}
-          value={
-            props.task.dueDate
-              ? new Date(props.task.dueDate).toLocaleDateString()
-              : ''
-          }
         />
       </div>
     </>

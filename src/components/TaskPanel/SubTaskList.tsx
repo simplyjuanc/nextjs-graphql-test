@@ -76,7 +76,6 @@ export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
           <div className={styles.gridHeader}></div>
           <div className={styles.gridHeader}>Title</div>
           <div className={styles.gridHeader}>Description</div>
-          <div className={styles.gridHeader}>Due date</div>
         </div>
         <div className={styles.gridContainer}>
           {subTasks.length > 0 &&
