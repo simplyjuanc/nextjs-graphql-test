@@ -43,6 +43,8 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
   const handleDelete = () => {
     props.setTasks((prev) => prev.filter((task) => task.id !== props.task.id));
     deleteTask({ id: props.task.id });
+    setIsModalActive(false);
+    props.setActiveTask([false, undefined]);
   };
 
   const handleSave = async () => {
@@ -67,6 +69,8 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
       );
     }
 
+    props.setActiveTask([false, undefined]);
+    setIsModalActive(false);
     props.setActiveTask([false, undefined]);
   };
 
@@ -105,7 +109,7 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
     },
     {
       text: 'Cancel',
-      onClick: () => handleSave,
+      onClick: () => setIsModalActive(false),
       justification: 'right',
     },
   ];
