@@ -1,0 +1,10 @@
+.actionBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: var(--spacing-large);
+  align-items: center;
+  width: 100%;
+  margin-bottom: var(--spacing-large);
+  margin-top: auto;
+}

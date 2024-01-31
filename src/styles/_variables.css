@@ -1,0 +1,49 @@
+:root {
+  /* Color Scheme */
+  --primary-bg-color: #ffffff;
+  --primary-bg-color-transparent: #ffffff88;
+  --secondary-bg-color: #e6ecf0;
+  --secondary-bg-color-darker: #bfcfd9;
+  --secondary-bg-color-lighter: #eff3f5;
+  --primary-text-color: #333333;
+  --ribbon-color: #222222;
+  --heading-color: #001c38;
+  --secondary-text-color: #ffffff;
+  --accent-color: #027dfa;
+  --border-color: #e1e1e1;
+  --error-color: #ff5b5b;
+
+  /* Typography */
+  --font-size-regular: 16px;
+  --font-size-small: 14px;
+  --font-size-xs: 10px;
+  --font-size-large: 20px;
+  --font-size-xl: 24px;
+  --font-wight-light: 200;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-medium: 1rem;
+  --spacing-xs: calc(var(--spacing-medium) * 0.25);
+  --spacing-small: calc(var(--spacing-medium) * 0.5);
+  --spacing-large: calc(var(--spacing-medium) * 2);
+  --spacing-xl: calc(var(--spacing-medium) * 3);
+
+  /* Borders and Radius */
+  --border-radius: 0.5rem;
+  --border-radius-small: calc(var(--border-radius) * 0.5);
+  --border-radius-large: calc(var(--border-radius) * 2);
+  --border-width: 1px;
+
+  /* Shadows */
+  --box-shadow: -5px -5px 10px 5px rgba(0, 0, 0, 0.1),
+    5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+  --box-shadow-small: 0px 4px 8px rgba(0, 0, 0, 0.1),
+    0px 4px 8px rgba(0, 0, 0, 0.1);
+  /* --box-shadow: 4px 8px 9px rgba(0, 0, 0, 0.1); */
+  --box-shadow-large: 4px 8px 9px rgba(0, 0, 0, 0.1);
+
+  /* Other */
+  --transition-speed: 0.3s;
+}

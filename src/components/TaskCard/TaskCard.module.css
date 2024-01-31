@@ -1,0 +1,44 @@
+.card {
+  border: solid var(--border-color) var(--border-width);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-small);
+  background-color: var(--primary-bg-color);
+  min-width: 20vw;
+  max-width: 20vw;
+  min-height: 4rem;
+  text-align: left;
+  margin-bottom: var(--spacing-medium);
+  cursor: pointer;
+  position: relative;
+}
+
+.cardContent {
+  height: 100%;
+  width: 100%;
+  padding: var(--spacing-small);
+}
+
+.btnContainer {
+  margin-top: var(--spacing-small);
+  margin-right: var(--spacing-small);
+}
+
+.title {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-small);
+}
+
+.date {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-light);
+}
+
+.dateCrossed {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-light);
+  text-decoration: line-through;
+}
+
+.description {
+  font-size: var(--font-size-sm);
+}
