@@ -3,13 +3,6 @@ import styles from './TaskPanel.module.css';
 import { TaskArticleProps } from './TaskPanel';
 
 export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    e.target.type = 'date';
-  };
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    e.target.type = e.target.value ? 'text' : 'date';
-  };
-
   return (
     <article className={styles.panelArticle}>
       <input
@@ -25,16 +18,14 @@ export const TaskDetails: React.FC<TaskArticleProps> = (props) => {
         <div className={styles.dateItem}>
           <p>Due by: </p>
           <input
-            type='text'
+            type='date'
             name='dueDate'
             className={styles.date}
             onChange={props.handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
             value={
               props.task?.dueDate
-                ? new Date(props.task.dueDate).toLocaleDateString()
-                : 'No due date'
+                ? new Date(props.task.dueDate).toISOString().slice(0, 10)
+                : ''
             }
           />
         </div>

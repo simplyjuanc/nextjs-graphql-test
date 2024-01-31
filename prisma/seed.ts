@@ -19,49 +19,51 @@ const statusData: Prisma.StatusCreateInput[] = [
 ];
 
 
+const today = new Date();
+const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000)
+
 const taskData: Prisma.TaskCreateInput[] = [
   {
     title: "Create",
     description: "Create a new task",
-    createdAt: new Date(),
+    createdAt: today,
     status: { connect: { value: 'TO_DO' } },
   },
   {
     title: "List",
     description: "Display tasks in a list",
-    createdAt: new Date(),
+    createdAt: today,
     status: { connect: { value: 'TO_DO' } },
+    dueDate: tomorrow
   },
   {
     title: "Delete",
     description: "Delete a task",
-    createdAt: new Date(),
+    createdAt: today,
     status: { connect: { value: 'TO_DO' } },
+    dueDate: tomorrow
   },
   {
     title: "Sub-task 1",
-    createdAt: new Date(),
+    createdAt: today,
     status: { connect: { value: 'TO_DO' } },
-    dueDate: new Date(),
   },
   {
     title: "Sub-task 2",
-    createdAt: new Date(),
+    createdAt: today,
     status: { connect: { value: 'TO_DO' } },
-    dueDate: new Date(),
   },
   {
     title: "Sub-task 3",
-    createdAt: new Date(),
+    createdAt: today,
     status: { connect: { value: 'TO_DO' } },
-    dueDate: new Date(),
   },
   {
     title: "Support sub-tasks",
     description: "Add support for array of sub-tasks on a task",
-    createdAt: new Date(),
+    createdAt: today,
     status: { connect: { value: 'TO_DO' } },
-    dueDate: new Date(),
+    dueDate: tomorrow,
     childrenTasks: { connect: [{ id: 4 }, { id: 5 }, { id: 6 }] },
   },
 ];

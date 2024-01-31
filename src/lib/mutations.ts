@@ -37,8 +37,8 @@ export const CREATE_SUB_TASK = gql`
 
 
 export const UPDATE_TASK = gql`
-  mutation updateTask($id: Int!, $title: String, $description: String, $status: Int) {
-    updateTask(id: $id, title: $title, description: $description, status: $status) {
+  mutation updateTask($id: Int!, $title: String, $description: String, $status: Int, $dueDate: String) {
+    updateTask(id: $id, title: $title, description: $description, status: $status, dueDate: $dueDate) {
       id
       title
       description

@@ -49,11 +49,13 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
 
   const handleSave = async () => {
     if (!taskDetails?.title) return;
+    console.log('save - taskDetails :>> ', taskDetails);
 
     if (!props.task) {
       const newTask = await createTask({
         title: taskDetails.title,
         description: taskDetails.description,
+        dueDate: taskDetails.dueDate,
         status: 1,
       });
       props.setTasks((prevTasks) => [...prevTasks, newTask.createTask]);
@@ -62,6 +64,7 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
         ...taskDetails,
         status: taskDetails.status.id,
       });
+      console.log('updatedTask :>> ', updatedTask.updateTask);
       props.setTasks((prevTasks) =>
         prevTasks.map((task) => {
           return task.id !== props.task.id ? task : updatedTask.updateTask;
@@ -69,7 +72,6 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
       );
     }
 
-    props.setActiveTask([false, undefined]);
     setIsModalActive(false);
     props.setActiveTask([false, undefined]);
   };
@@ -78,12 +80,17 @@ const TaskPanel: React.FC<TaskPanelProps> = (props) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     if (e.target.name === 'dueDate') {
-      e.target.value = new Date(e.target.value).toISOString();
+      setTaskDetails((prev) => {
+        return {
+          ...prev,
+          [e.target.name]: new Date(e.target.value).toISOString(),
+        };
+      });
+    } else {
+      setTaskDetails((prev) => {
+        return { ...prev, [e.target.name]: e.target.value };
+      });
     }
-
-    setTaskDetails((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
-    });
   };
 
   const actionBtns: ButtonProps[] = [
