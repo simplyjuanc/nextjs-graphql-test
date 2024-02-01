@@ -17,7 +17,7 @@ const Header = () => {
           <p>Hi, [USERNAME]</p>
           <Button
             text='Logout'
-            onClick={() => console.log()}
+            onClick={() => console.log('LOGOUT')}
             size='small'
             icon={BiDoorOpen}
           />
