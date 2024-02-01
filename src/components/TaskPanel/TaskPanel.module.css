@@ -184,3 +184,10 @@
 .subTaskList {
   width: 100%;
 }
+
+.warning {
+  color: var(--error-color);
+  font-size: var(--font-size-xs);
+  margin-left: auto;
+  font-style: italic;
+}

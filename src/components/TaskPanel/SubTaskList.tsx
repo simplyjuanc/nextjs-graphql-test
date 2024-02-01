@@ -19,6 +19,7 @@ interface SubTaskListProps {
 
 export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
   const [subTasks, setSubTasks] = useState<Task[]>([]);
+  const [showWarning, setShowWarning] = useState(false);
   const { taskAction: createSubTask } = useCreateSubTask();
   const { taskAction: deleteTask } = useDeleteTask();
   const { taskAction: updateTask } = useUpdateTask();
@@ -56,7 +57,10 @@ export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
   };
 
   const handleAddSubTask = async () => {
-    if (!props.parentTaskId) return;
+    if (!props.parentTaskId) {
+      setShowWarning(true);
+      return;
+    }
     const subTask = await createSubTask({
       title: '',
       description: '',
@@ -98,6 +102,9 @@ export const SubTaskList: React.FC<SubTaskListProps> = (props) => {
           onClick={handleAddSubTask}
         />
       </div>
+      {showWarning && (
+        <p className={styles.warning}>Please add task before sub-tasks.</p>
+      )}
     </article>
   );
 };

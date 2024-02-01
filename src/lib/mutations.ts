@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client"
 
 export const CREATE_TASK = gql`
-  mutation createTask($title: String!, $description: String, $status: Int!, $dueDate: DateTime) {
-    createTask(title: $title, description: $description, status: $status) {
+  mutation createTask($title: String!,$status: Int!, $description: String,  $dueDate: String) {
+    createTask(title: $title, description: $description, status: $status, dueDate: $dueDate) {
       id
       description
       createdAt
@@ -18,7 +18,7 @@ export const CREATE_TASK = gql`
 
 
 export const CREATE_SUB_TASK = gql`
-  mutation createSubTask($title: String!, $description: String, $status: Int!, $parentTaskId: Int!) {
+  mutation createSubTask($title: String!, $status: Int!, $parentTaskId: Int!, $description: String, ) {
     createSubTask(title: $title, description: $description, status: $status, parentTaskId: $parentTaskId) {
       id
       description
