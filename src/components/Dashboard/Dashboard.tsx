@@ -28,7 +28,6 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
   useEffect(() => {
     if (data) {
       const topLevelTasks = data.Task.filter((task) => !task.parentTaskId);
-      console.log('topLevelTasks :>> ', topLevelTasks);
       setTasks(topLevelTasks);
     }
   }, [data]);
@@ -42,9 +41,6 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     ) {
       return;
     }
-
-    console.log('source.index :>> ', source.index);
-    console.log('destination.index :>> ', destination.index);
 
     const updatedTasks = tasks.map((task) => {
       if (task.id.toString() !== draggableId) return task;

@@ -1,6 +1,5 @@
 import { extendType, intArg, nonNull, stringArg } from "nexus";
 import { Context } from "../context";
-import { DateTime } from "../schema";
 
 
 
@@ -13,7 +12,7 @@ export const createTask = extendType({
       args: {
         title: nonNull(stringArg()),
         description: stringArg({ default: "" }),
-        status: nonNull(intArg()),
+        status: intArg({ default: 1 }),
         parentTaskId: intArg(),
         dueDate: stringArg(),
       },
@@ -22,6 +21,7 @@ export const createTask = extendType({
           data: {
             title: args.title,
             description: args.description,
+            dueDate: args.dueDate ? new Date(args.dueDate) : undefined,
             status: { connect: { id: args.status } },
           },
           include: { status: true },

@@ -15,6 +15,9 @@ function useCustomMutation<T, U>(mutation: DocumentNode) {
     try {
       const res = await mutate({
         variables: { ...args },
+        onError: (err) => {
+          throw new Error(err.message);
+        }
       });
       const data = res.data;
       return data;
