@@ -10,7 +10,7 @@ const Header = () => {
     <header>
       <div className={styles.header}>
         <div className={styles.branding}>
-          <Image alt='PortF logo' src={CroppedLogo} />
+          <Image alt='Logo' src={CroppedLogo} />
           <h1>Welcome to the Task Manager</h1>
         </div>
         <div className={styles.logout}>

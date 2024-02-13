@@ -5,16 +5,6 @@ import Link from 'next/link';
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <p>
-        Tech Assessment for{' '}
-        <Link
-          className={styles.linkInverse}
-          href={'https://www.portf.io/'}
-          target='blank'
-        >
-          PortF.io
-        </Link>
-      </p>
       <div className={styles.footerCredits}>
         <p>Juan Vásquez</p>
         <p>January, 2024</p>
