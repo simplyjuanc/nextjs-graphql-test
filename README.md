@@ -1,18 +1,14 @@
 ## Getting Started
 
-Welcome to the Task Manager coding challenge, in this challenge you will be tasked with building a simple Task Management Application that allows users to create, update delete, and view tasks.
+Simple Task Management Application that allows users to create, update delete, and view tasks.
 
-Already scaffolded for you is a NextJS app with the following integrations:
+It is a NextJS app with the following integrations:
 
 - Prisma ORM with SQLite
 - Nexus (GraphQL schema generation)
 - Apollo Server
 - Apollo Client
 - GraphQL Code Generator (for apollo client requests)
-
-### Prerequisites
-
-- Node v20 is recommended.
 
 ### NPM
 
